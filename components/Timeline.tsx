@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface Milestone {
   year: string;
@@ -14,76 +15,81 @@ const milestones: Milestone[] = [
     title: 'The Foundation',
     description: 'Established during peak displacement periods to provide immediate shelter and legal aid to tribal communities.',
     caption: 'First Relief Operation',
-    color: '#D2691E' // Terracotta
+    color: '#D2691E'
   },
   {
     year: '2005',
     title: 'Handloom Heritage',
     description: 'The birth of the Weaving & Production Center, creating sustainable livelihoods for displaced women.',
     caption: 'Artisan Empowerment Center',
-    color: '#556B2F' // Green
+    color: '#556B2F'
   },
   {
     year: '2015',
     title: 'Legal Advocacy',
     description: 'Launch of legal literacy camps helping tribal families reclaim their constitutional land rights.',
     caption: 'Land Rights Seminar',
-    color: '#D4AF37' // Gold
+    color: '#D4AF37'
   },
   {
     year: '2026',
     title: 'The Digital Future',
     description: 'Scaling our reach through a global marketplace for tribal crafts and digital vocational training.',
     caption: 'TWS Digital Hub Vision',
-    color: '#121212' // Charcoal
+    color: '#121212'
   }
 ];
 
 const LegacyTimeline: React.FC = () => {
-  const [lineHeight, setLineHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end end"]
+  });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const progress = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight * 0.5), 0), 1);
-      setLineHeight(progress * 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div ref={containerRef} className="relative max-w-5xl mx-auto py-12">
-      <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-stone-200 -translate-x-1/2 hidden md:block"></div>
+    <div ref={containerRef} className="relative max-w-5xl mx-auto py-12 px-6">
+      <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1.5px] bg-stone-200 md:-translate-x-1/2"></div>
       
-      <div 
-        className="absolute left-1/2 top-0 w-[2px] bg-stone-900 -translate-x-1/2 hidden md:block transition-all duration-300 ease-out"
-        style={{ height: `${lineHeight}%` }}
-      ></div>
+      <motion.div 
+        className="absolute left-6 md:left-1/2 top-0 w-[1.5px] bg-stone-900 md:-translate-x-1/2 transition-all duration-300 ease-out z-10"
+        style={{ height: lineHeight }}
+      ></motion.div>
       
       <div className="space-y-32">
         {milestones.map((item, index) => (
-          <div key={item.year} className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} reveal reveal-up`}>
+          <motion.div 
+            key={item.year}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+          >
             
-            <div className="md:absolute md:left-1/2 md:-translate-x-1/2 z-10 mb-8 md:mb-0">
-              <div 
-                className="w-16 h-16 rounded-full bg-white border-2 flex items-center justify-center shadow-lg transition-transform duration-500 hover:scale-110"
+            <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20">
+              <motion.div 
+                whileHover={{ scale: 1.1 }}
+                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-2 flex items-center justify-center shadow-lg"
                 style={{ borderColor: item.color }}
               >
-                <span className="serif text-sm font-bold text-stone-900">{item.year}</span>
-              </div>
+                <span className="serif text-[10px] md:text-sm font-bold text-stone-900">{item.year}</span>
+              </motion.div>
             </div>
 
-            <div className={`w-full md:w-[42%] text-center ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'} group`}>
-              <h3 className="serif text-3xl md:text-5xl mb-6 text-stone-900 group-hover:text-terracotta transition-colors duration-500">{item.title}</h3>
-              <p className="text-stone-600 font-light leading-relaxed text-lg mb-10">
+            <div className={`w-full md:w-[42%] mt-16 md:mt-0 pl-16 md:pl-0 text-left ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'} group`}>
+              <motion.h3 
+                className="serif text-3xl md:text-5xl mb-6 text-stone-900 group-hover:text-terracotta transition-colors duration-500"
+              >
+                {item.title}
+              </motion.h3>
+              <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg mb-10 max-w-lg md:ml-auto md:mr-0">
                 {item.description}
               </p>
               
-              <div className="relative overflow-hidden rounded-xl bg-white p-2 shadow-2xl border border-stone-100">
+              <div className="relative overflow-hidden rounded-xl bg-white p-1.5 md:p-2 shadow-2xl border border-stone-100">
                 <div className="relative overflow-hidden rounded-lg aspect-video grayscale hover:grayscale-0 transition-all duration-1000">
                   <img 
                     src={`https://images.unsplash.com/photo-${index === 0 ? '1488521787991-ed7bbaae773c' : index === 1 ? '1544256718-3bcf237f3974' : index === 2 ? '1589829545856-d10d557cf95f' : '1542810634-71277d95dcbb'}?q=80&w=1200&auto=format&fit=crop`} 
@@ -95,14 +101,14 @@ const LegacyTimeline: React.FC = () => {
                 
                 <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full border border-stone-100 shadow-xl">
-                    <p className="serif text-stone-800 text-xs font-bold italic">
+                    <p className="serif text-stone-800 text-[10px] md:text-xs font-bold italic">
                       {item.caption}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import OurRoots from './components/OurRoots';
 import LegacyTimeline from './components/Timeline';
 import BentoGrid from './components/BentoGrid';
+import Gallery from './components/Gallery';
 import LivePulse from './components/LivePulse';
 import ContributionHub from './components/DonationHub';
 import Footer from './components/Footer';
@@ -50,6 +51,9 @@ const App: React.FC = () => {
             <BentoGrid />
           </div>
         </section>
+
+        {/* New Gallery Section */}
+        <Gallery />
 
         <section id="live" className="py-32 bg-[#F5F5F0] border-t border-stone-200/50">
           <div className="container mx-auto px-6">
