@@ -16,10 +16,10 @@ const LivePulse: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-end gap-8">
         <div>
           <span className="text-earthy-green font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Groundwater Impact</span>
-          <h2 className="serif text-5xl md:text-8xl text-stone-900 leading-[0.9]">Live Records.</h2>
+          <h2 className="serif text-5xl md:text-8xl text-stone-900 dark:text-stone-100 leading-[0.9]">Live Records.</h2>
         </div>
-        <button className="text-stone-900 border-b-2 border-stone-200 pb-2 text-xs font-bold tracking-[0.3em] uppercase hover:border-terracotta transition-colors">
-          View Full Archive @tws_legacy
+        <button className="text-stone-900 dark:text-stone-100 border-b-2 border-stone-200 dark:border-stone-700 pb-2 text-xs font-bold tracking-[0.3em] uppercase hover:border-terracotta transition-colors">
+          View Full Archive @tribalwelfaresociety
         </button>
       </div>
 
@@ -27,7 +27,7 @@ const LivePulse: React.FC = () => {
         {images.map((img, i) => (
           <div 
             key={i} 
-            className="relative overflow-hidden group rounded-2xl bg-white border border-stone-100 shadow-sm hover:shadow-2xl transition-all duration-700 reveal reveal-up"
+            className="relative overflow-hidden group rounded-2xl bg-white dark:bg-stone-800 border border-stone-100 dark:border-stone-700 shadow-sm hover:shadow-2xl transition-all duration-700 reveal reveal-up"
             style={{ transitionDelay: `${i * 0.1}s` }}
           >
             <div className="relative aspect-[4/5] overflow-hidden">
@@ -40,8 +40,8 @@ const LivePulse: React.FC = () => {
               />
             </div>
             <div className="p-6">
-              <p className="serif text-stone-900 italic text-lg">{img.caption}</p>
-              <div className="mt-2 w-8 h-[1px] bg-stone-200 group-hover:w-full group-hover:bg-terracotta transition-all duration-700"></div>
+              <p className="serif text-stone-900 dark:text-stone-100 italic text-base md:text-lg">{img.caption}</p>
+              <div className="mt-2 w-8 h-[1px] bg-stone-200 dark:bg-stone-700 group-hover:w-full group-hover:bg-terracotta dark:group-hover:bg-terracotta transition-all duration-700"></div>
             </div>
           </div>
         ))}

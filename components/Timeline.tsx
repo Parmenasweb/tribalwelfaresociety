@@ -54,10 +54,10 @@ const LegacyTimeline: React.FC = () => {
 
   return (
     <div ref={containerRef} className="relative max-w-5xl mx-auto py-12 px-6">
-      <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1.5px] bg-stone-200 md:-translate-x-1/2"></div>
+      <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1.5px] bg-stone-200 dark:bg-stone-700 md:-translate-x-1/2"></div>
       
       <motion.div 
-        className="absolute left-6 md:left-1/2 top-0 w-[1.5px] bg-stone-900 md:-translate-x-1/2 transition-all duration-300 ease-out z-10"
+        className="absolute left-6 md:left-1/2 top-0 w-[1.5px] bg-stone-900 dark:bg-stone-100 md:-translate-x-1/2 transition-all duration-300 ease-out z-10"
         style={{ height: lineHeight }}
       ></motion.div>
       
@@ -75,24 +75,24 @@ const LegacyTimeline: React.FC = () => {
             <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20">
               <motion.div 
                 whileHover={{ scale: 1.1 }}
-                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-2 flex items-center justify-center shadow-lg"
+                className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white dark:bg-stone-800 border-2 flex items-center justify-center shadow-lg"
                 style={{ borderColor: item.color }}
               >
-                <span className="serif text-[10px] md:text-sm font-bold text-stone-900">{item.year}</span>
+                <span className="serif text-[10px] md:text-sm font-bold text-stone-900 dark:text-stone-100">{item.year}</span>
               </motion.div>
             </div>
 
             <div className={`w-full md:w-[42%] mt-16 md:mt-0 pl-16 md:pl-0 text-left ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'} group`}>
               <motion.h3 
-                className="serif text-3xl md:text-5xl mb-6 text-stone-900 group-hover:text-terracotta transition-colors duration-500"
+                className="serif text-3xl md:text-5xl mb-6 text-stone-900 dark:text-stone-100 group-hover:text-terracotta transition-colors duration-500"
               >
                 {item.title}
               </motion.h3>
-              <p className="text-stone-600 font-light leading-relaxed text-base md:text-lg mb-10 max-w-lg md:ml-auto md:mr-0">
+              <p className="text-stone-600 dark:text-stone-300 font-light leading-relaxed text-base md:text-lg mb-10 max-w-lg md:ml-auto md:mr-0">
                 {item.description}
               </p>
               
-              <div className="relative overflow-hidden rounded-xl bg-white p-1.5 md:p-2 shadow-2xl border border-stone-100">
+              <div className="relative overflow-hidden rounded-xl bg-white dark:bg-stone-800 p-1.5 md:p-2 shadow-2xl border border-stone-100 dark:border-stone-700">
                 <div className="relative overflow-hidden rounded-lg aspect-video grayscale hover:grayscale-0 transition-all duration-1000">
                   <Image 
                     src={`https://images.unsplash.com/photo-${index === 0 ? '1488521787991-ed7bbaae773c' : index === 1 ? '1544256718-3bcf237f3974' : index === 2 ? '1589829545856-d10d557cf95f' : '1542810634-71277d95dcbb'}?q=80&w=1200&auto=format&fit=crop`} 
@@ -105,8 +105,8 @@ const LegacyTimeline: React.FC = () => {
                 </div>
                 
                 <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                  <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full border border-stone-100 shadow-xl">
-                    <p className="serif text-stone-800 text-[10px] md:text-xs font-bold italic">
+                  <div className="bg-white dark:bg-stone-800/95 backdrop-blur-sm px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700 shadow-xl">
+                    <p className="serif text-stone-800 dark:text-stone-100 text-[10px] md:text-xs font-bold italic">
                       {item.caption}
                     </p>
                   </div>
