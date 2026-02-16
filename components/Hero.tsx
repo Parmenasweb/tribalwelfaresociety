@@ -1,11 +1,15 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Heart, Shield, Users } from 'lucide-react';
 
+// Add hero-sample.jpg (or .png) to /public to display as hero background
+const HERO_IMAGE_PATH = '/hero-sample.jpg';
+
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [heroImageLoaded, setHeroImageLoaded] = useState<boolean | null>(null);
 
   const impactStats = [
     { value: '30+', label: 'Years of Service', color: 'text-terracotta', icon: <Shield className="w-5 h-5" /> },
@@ -18,8 +22,23 @@ const Hero: React.FC = () => {
       ref={heroRef}
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-stone-50 via-white to-stone-100 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950"
     >
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Hero Background Image - add hero-sample.jpg to /public to use */}
+      {heroImageLoaded !== false && (
+        <div className="absolute inset-0 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={HERO_IMAGE_PATH}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-15"
+            onLoad={() => setHeroImageLoaded(true)}
+            onError={() => setHeroImageLoaded(false)}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white dark:from-stone-950/90 dark:via-stone-900/80 dark:to-stone-950" />
+        </div>
+      )}
+
+      {/* Decorative Background Elements (when no hero image) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-terracotta/5 dark:bg-terracotta/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-earthy-green/5 dark:bg-earthy-green/10 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 dark:bg-gold/10 rounded-full blur-3xl"></div>

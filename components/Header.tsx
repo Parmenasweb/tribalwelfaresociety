@@ -64,11 +64,11 @@ const Header: React.FC = () => {
             : 'py-6 bg-transparent'
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 flex justify-between items-center max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-5 lg:px-6 xl:px-8 2xl:px-10 flex justify-between items-center max-w-7xl">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className={`serif text-2xl md:text-3xl font-bold tracking-tighter cursor-pointer hover:opacity-70 transition-all ${
+            className={`serif text-xl lg:text-2xl xl:text-3xl font-bold tracking-tighter cursor-pointer hover:opacity-70 transition-all shrink-0 ${
               isScrolled ? 'text-stone-900 dark:text-white' : 'text-stone-900 dark:text-white'
             }`}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -76,12 +76,12 @@ const Header: React.FC = () => {
             Tribal Welfare Society
           </motion.div>
           
-          <nav className="hidden lg:flex items-center space-x-8 xl:space-x-12">
+          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-6 2xl:space-x-8 shrink-0">
             {navLinks.map((link) => (
               <motion.a 
                 key={link.name} 
                 href={link.href}
-                className={`relative text-[10px] font-bold tracking-[0.3em] uppercase py-2 transition-colors duration-300 ${
+                className={`relative text-[9px] xl:text-[10px] font-bold tracking-[0.25em] xl:tracking-[0.3em] uppercase py-2 whitespace-nowrap transition-colors duration-300 ${
                   isScrolled 
                     ? 'text-stone-900 dark:text-white hover:text-terracotta dark:hover:text-terracotta' 
                     : 'text-stone-900 dark:text-white hover:text-terracotta dark:hover:text-terracotta'
@@ -103,7 +103,7 @@ const Header: React.FC = () => {
             
             <a 
               href="#support"
-              className={`px-8 xl:px-10 py-3 xl:py-4 rounded-full text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-300 shadow-lg hover:scale-105 ${
+              className={`px-6 xl:px-8 py-3 rounded-full text-[9px] xl:text-[10px] font-black uppercase tracking-[0.25em] xl:tracking-[0.3em] whitespace-nowrap transition-all duration-300 shadow-lg hover:scale-105 ${
                 isScrolled 
                   ? 'bg-stone-900 dark:bg-stone-800 text-white hover:bg-stone-800 dark:hover:bg-stone-700' 
                   : 'bg-stone-900 dark:bg-stone-800 text-white hover:bg-stone-800 dark:hover:bg-stone-700'

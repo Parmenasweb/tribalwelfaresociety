@@ -100,7 +100,8 @@ function AnimatedNumber({ value }: { value: number }) {
     damping: 60,
     stiffness: 100,
   });
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  // Use generous margin on mobile so counter triggers when section is visible
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -30px 0px', amount: 0.1 });
 
   useEffect(() => {
     if (isInView) {
@@ -109,11 +110,12 @@ function AnimatedNumber({ value }: { value: number }) {
   }, [motionValue, isInView, value]);
 
   useEffect(() => {
-    springValue.on('change', (latest) => {
+    const unsubscribe = springValue.on('change', (latest) => {
       if (ref.current) {
         ref.current.textContent = Math.floor(latest).toLocaleString();
       }
     });
+    return () => unsubscribe();
   }, [springValue]);
 
   return <span ref={ref}>0</span>;
