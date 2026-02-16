@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 
 interface Milestone {
@@ -6,32 +5,37 @@ interface Milestone {
   title: string;
   description: string;
   caption: string;
+  color: string;
 }
 
 const milestones: Milestone[] = [
   {
     year: '1993',
     title: 'The Foundation',
-    description: 'Established in response to the deep suffering of conflict-displaced tribal communities.',
-    caption: 'First Relief Camp Mission, 1993'
+    description: 'Established during peak displacement periods to provide immediate shelter and legal aid to tribal communities.',
+    caption: 'First Relief Operation',
+    color: '#D2691E' // Terracotta
   },
   {
     year: '2005',
     title: 'Handloom Heritage',
-    description: 'Launch of the Traditional Weaving & Production Center to empower women through artisanal skills.',
-    caption: 'Artisans at the Weaving Center'
+    description: 'The birth of the Weaving & Production Center, creating sustainable livelihoods for displaced women.',
+    caption: 'Artisan Empowerment Center',
+    color: '#556B2F' // Green
   },
   {
     year: '2015',
     title: 'Legal Advocacy',
-    description: 'Initiated legal education programs to protect the rights of the downtrodden and marginalized.',
-    caption: 'Constitutional Rights Seminar'
+    description: 'Launch of legal literacy camps helping tribal families reclaim their constitutional land rights.',
+    caption: 'Land Rights Seminar',
+    color: '#D4AF37' // Gold
   },
   {
     year: '2026',
     title: 'The Digital Future',
-    description: 'Scaling our mission to reach global patrons and expand high-tech vocational training modules.',
-    caption: 'Vision: Future Digital Hub'
+    description: 'Scaling our reach through a global marketplace for tribal crafts and digital vocational training.',
+    caption: 'TWS Digital Hub Vision',
+    color: '#121212' // Charcoal
   }
 ];
 
@@ -47,47 +51,51 @@ const LegacyTimeline: React.FC = () => {
       const progress = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight * 0.5), 0), 1);
       setLineHeight(progress * 100);
     };
-
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div ref={containerRef} className="relative max-w-4xl mx-auto py-12">
-      <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-stone-800 -translate-x-1/2 hidden md:block"></div>
+    <div ref={containerRef} className="relative max-w-5xl mx-auto py-12">
+      <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-stone-200 -translate-x-1/2 hidden md:block"></div>
       
       <div 
-        className="absolute left-1/2 top-0 w-[1px] bg-stone-300 -translate-x-1/2 hidden md:block transition-all duration-300 ease-out"
-        style={{ height: `${lineHeight}%`, opacity: lineHeight > 0 ? 1 : 0 }}
+        className="absolute left-1/2 top-0 w-[2px] bg-stone-900 -translate-x-1/2 hidden md:block transition-all duration-300 ease-out"
+        style={{ height: `${lineHeight}%` }}
       ></div>
       
-      <div className="space-y-24 md:space-y-48">
+      <div className="space-y-32">
         {milestones.map((item, index) => (
-          <div key={item.year} className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+          <div key={item.year} className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} reveal reveal-up`}>
+            
             <div className="md:absolute md:left-1/2 md:-translate-x-1/2 z-10 mb-8 md:mb-0">
-              <div className="w-20 h-20 rounded-full bg-[#121212] border border-stone-700 flex items-center justify-center shadow-2xl transition-transform duration-500 group-hover:scale-110">
-                <span className="serif text-xl font-bold text-stone-100">{item.year}</span>
+              <div 
+                className="w-16 h-16 rounded-full bg-white border-2 flex items-center justify-center shadow-lg transition-transform duration-500 hover:scale-110"
+                style={{ borderColor: item.color }}
+              >
+                <span className="serif text-sm font-bold text-stone-900">{item.year}</span>
               </div>
             </div>
 
-            <div className={`w-full md:w-[45%] text-center ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'} group`}>
-              <h3 className="serif text-3xl md:text-4xl mb-4 group-hover:text-stone-300 transition-colors duration-500">{item.title}</h3>
-              <p className="text-stone-400 font-light leading-relaxed text-lg mb-8">
+            <div className={`w-full md:w-[42%] text-center ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'} group`}>
+              <h3 className="serif text-3xl md:text-5xl mb-6 text-stone-900 group-hover:text-terracotta transition-colors duration-500">{item.title}</h3>
+              <p className="text-stone-600 font-light leading-relaxed text-lg mb-10">
                 {item.description}
               </p>
               
-              <div className="relative overflow-hidden rounded-sm bg-stone-900 border border-stone-800 grayscale hover:grayscale-0 transition-all duration-1000">
-                <img 
-                  src={`https://picsum.photos/seed/${item.year}/800/400?grayscale`} 
-                  alt={item.title}
-                  loading="lazy"
-                  className="w-full h-auto opacity-40 group-hover:opacity-100 transition-all duration-1000 scale-110 group-hover:scale-100"
-                />
-                {/* Milestone Image Caption */}
-                <div className="absolute bottom-4 left-4 right-4 text-left translate-y-full group-hover:translate-y-0 transition-transform duration-700">
-                  <div className="bg-white px-3 py-1 inline-block">
-                    <p className="serif text-black text-xs font-bold italic">
+              <div className="relative overflow-hidden rounded-xl bg-white p-2 shadow-2xl border border-stone-100">
+                <div className="relative overflow-hidden rounded-lg aspect-video grayscale hover:grayscale-0 transition-all duration-1000">
+                  <img 
+                    src={`https://images.unsplash.com/photo-${index === 0 ? '1488521787991-ed7bbaae773c' : index === 1 ? '1544256718-3bcf237f3974' : index === 2 ? '1589829545856-d10d557cf95f' : '1542810634-71277d95dcbb'}?q=80&w=1200&auto=format&fit=crop`} 
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
+                  />
+                  <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                </div>
+                
+                <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                  <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full border border-stone-100 shadow-xl">
+                    <p className="serif text-stone-800 text-xs font-bold italic">
                       {item.caption}
                     </p>
                   </div>

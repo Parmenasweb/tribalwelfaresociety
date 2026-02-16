@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tribal Welfare Society - Modern Heritage</title>
+    <title>TWS | Tribal Welfare Society</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bone-white: #F5F5F0;
+            --deep-charcoal: #121212;
+            --terracotta: #D2691E;
+            --earthy-green: #556B2F;
+            --gold: #D4AF37;
+        }
         body {
-            background-color: #121212;
-            color: #f8f8f8;
+            background-color: var(--bone-white);
+            color: var(--deep-charcoal);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
         .serif {
             font-family: 'Playfair Display', serif;
         }
+        .sans-alt {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
         /* Custom grain & paper effect */
         .grain {
             position: fixed;
@@ -26,7 +37,7 @@
             width: 200%;
             height: 200%;
             background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.05;
+            opacity: 0.04;
             pointer-events: none;
             z-index: 9999;
         }
@@ -34,27 +45,14 @@
             position: fixed;
             inset: 0;
             background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
-            opacity: 0.03;
+            opacity: 0.06;
             pointer-events: none;
             z-index: 9998;
         }
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
-        }
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #121212;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #444;
         }
 
         /* Animations */
@@ -64,7 +62,7 @@
         }
         .reveal {
             opacity: 0;
-            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -73,28 +71,15 @@
         }
         .reveal-up { transform: translateY(40px); filter: blur(5px); }
 
-        @keyframes pulseRing {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.6); opacity: 0; }
-        }
-        .animate-pulse-ring {
-            animation: pulseRing 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        .image-mask {
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M44.7,-76.4C58.3,-69.2,70.1,-59.1,78.7,-46.5C87.3,-33.9,92.7,-17,91.8,-0.5C90.9,15.9,83.7,31.8,74.1,45.3C64.5,58.8,52.5,69.9,38.5,77C24.5,84.1,8.5,87.2,-7.1,85.1C-22.7,83,-37.9,75.7,-50.8,65.8C-63.7,55.9,-74.3,43.4,-80.7,29.3C-87.1,15.2,-89.3,-0.5,-86.3,-15.1C-83.3,-29.7,-75.1,-43.2,-63.9,-51.7C-52.7,-60.2,-38.5,-63.7,-25.4,-71.2C-12.3,-78.7,0.3,-90.2,12.3,-90.1C24.3,-90,31.1,-83.6,44.7,-76.4Z" transform="translate(100 100)"/></svg>');
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
         }
         
-        .nav-link-underline {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-        .group:hover .nav-link-underline {
-            transform: scaleX(1);
-            transform-origin: left;
+        .timeline-marker {
+            box-shadow: 0 0 0 4px var(--bone-white), 0 0 0 6px var(--marker-color);
         }
     </style>
 <script type="importmap">
