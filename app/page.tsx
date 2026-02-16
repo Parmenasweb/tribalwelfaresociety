@@ -1,16 +1,15 @@
-import React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import OurRoots from './components/OurRoots';
-import LegacyTimeline from './components/Timeline';
-import BentoGrid from './components/BentoGrid';
-import Gallery from './components/Gallery';
-import LivePulse from './components/LivePulse';
-import ContributionHub from './components/DonationHub';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import OurRoots from '@/components/OurRoots';
+import LegacyTimeline from '@/components/Timeline';
+import BentoGrid from '@/components/BentoGrid';
+import Gallery from '@/components/Gallery';
+import LivePulse from '@/components/LivePulse';
+import ContributionHub from '@/components/DonationHub';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 
-const App: React.FC = () => {
+export default function Home() {
   return (
     <div className="min-h-screen selection:bg-stone-200 selection:text-stone-900">
       <Header />
@@ -74,6 +73,4 @@ const App: React.FC = () => {
       <ScrollToTop />
     </div>
   );
-};
-
-export default App;
+}

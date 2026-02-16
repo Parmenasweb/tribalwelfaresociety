@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bone-white: #F5F5F0;
+  --deep-charcoal: #121212;
+  --terracotta: #D2691E;
+  --earthy-green: #556B2F;
+  --gold: #D4AF37;
+}
+
+body {
+  background-color: var(--bone-white);
+  color: var(--deep-charcoal);
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif {
+  font-family: var(--font-playfair), serif;
+}
+
+.sans-alt {
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+/* Premium Grain & Paper Effect */
+.grain {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain-dance 8s steps(10) infinite;
+}
+
+@keyframes grain-dance {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.paper-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.image-mask {
+  mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M44.7,-76.4C58.3,-69.2,70.1,-59.1,78.7,-46.5C87.3,-33.9,92.7,-17,91.8,-0.5C90.9,15.9,83.7,31.8,74.1,45.3C64.5,58.8,52.5,69.9,38.5,77C24.5,84.1,8.5,87.2,-7.1,85.1C-22.7,83,-37.9,75.7,-50.8,65.8C-63.7,55.9,-74.3,43.4,-80.7,29.3C-87.1,15.2,-89.3,-0.5,-86.3,-15.1C-83.3,-29.7,-75.1,-43.2,-63.9,-51.7C-52.7,-60.2,-38.5,-63.7,-25.4,-71.2C-12.3,-78.7,0.3,-90.2,12.3,-90.1C24.3,-90,31.1,-83.6,44.7,-76.4Z" transform="translate(100 100)"/></svg>');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.nav-link-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--terracotta);
+  transition: width 0.3s ease;
+}
+
+a:hover .nav-link-underline {
+  width: 100%;
+}

@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const Gallery: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -101,11 +104,12 @@ const Gallery: React.FC = () => {
               className="relative overflow-hidden group rounded-[1.5rem] md:rounded-[2rem] bg-white border border-stone-100 shadow-sm hover:shadow-2xl transition-all duration-1000 cursor-pointer"
             >
               <div className="relative overflow-hidden aspect-auto">
-                <img 
+                <Image 
                   src={img.url} 
                   alt={img.caption}
-                  loading="lazy"
-                  className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" 
+                  fill
+                  className="object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" 
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
@@ -166,11 +170,15 @@ const Gallery: React.FC = () => {
               className="relative max-w-[95vw] md:max-w-[90vw] max-h-[85vh] flex flex-col items-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.5)]">
-                 <img 
+              <div className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.5)] w-full" style={{ maxHeight: '70vh' }}>
+                 <Image 
                   src={images[selectedIndex].url} 
                   alt={images[selectedIndex].caption}
-                  className="max-w-full max-h-[65vh] md:max-h-[70vh] object-contain transition-transform duration-1000 ease-out md:group-hover:scale-[1.03] cursor-zoom-in"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto max-h-[65vh] md:max-h-[70vh] object-contain transition-transform duration-1000 ease-out md:group-hover:scale-[1.03] cursor-zoom-in"
+                  style={{ maxWidth: '100%', height: 'auto' }}
+                  unoptimized
                 />
               </div>
               

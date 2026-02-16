@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const DonationHub: React.FC = () => {
   return (
@@ -18,7 +21,7 @@ const DonationHub: React.FC = () => {
           </div>
           <h2 className="serif text-5xl md:text-8xl text-[#121212] leading-tight font-bold tracking-tight">Fuel the Mission.</h2>
           <p className="text-stone-600 text-lg md:text-2xl leading-relaxed font-light italic border-l-2 border-stone-200 pl-6 md:pl-8">
-            "Your contribution is more than a donation—it is a direct investment in human dignity."
+            &ldquo;Your contribution is more than a donation—it is a direct investment in human dignity.&rdquo;
           </p>
         </div>
 
@@ -77,9 +80,11 @@ const DonationHub: React.FC = () => {
           <div className="mb-8 md:mb-12 p-6 md:p-8 bg-white/80 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_10px_40px_rgba(0,0,0,0.05)] border border-white/50 relative overflow-hidden group/qr">
              <div className="absolute inset-0 bg-stone-50 opacity-0 group-hover/qr:opacity-10 transition-opacity"></div>
              <div className="w-48 h-48 md:w-64 md:h-64 bg-white flex items-center justify-center p-4 relative z-10">
-                <img 
+                <Image 
                   src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=TWS_UPI_PORTAL_SUPPORT&bgcolor=ffffff&color=121212" 
                   alt="Patron QR Code" 
+                  width={256}
+                  height={256}
                   className="w-full h-full grayscale group-hover/qr:grayscale-0 transition-all duration-700" 
                 />
              </div>

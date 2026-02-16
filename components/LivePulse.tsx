@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const LivePulse: React.FC = () => {
   const images = [
@@ -30,11 +31,12 @@ const LivePulse: React.FC = () => {
             style={{ transitionDelay: `${i * 0.1}s` }}
           >
             <div className="relative aspect-[4/5] overflow-hidden">
-              <img 
+              <Image 
                 src={img.url} 
                 alt={img.caption}
-                loading="lazy"
-                className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" 
+                fill
+                className="object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" 
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>
             <div className="p-6">

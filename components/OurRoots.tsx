@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const OurRoots: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const OurRoots: React.FC = () => {
             Founded in the heart of a crisis, the Tribal Welfare Society emerged from a singular necessity: to serve those forgotten by the tides of conflict. For over three decades, we have stood at the frontlines of relief for the displaced, the destitute, and the underprivileged across the North East and beyond.
           </p>
           <p className="italic serif text-2xl text-stone-800 leading-snug">
-            "What began as a relief effort for those fleeing social and natural calamities has evolved into a 30-year mission of restoration."
+            &ldquo;What began as a relief effort for those fleeing social and natural calamities has evolved into a 30-year mission of restoration.&rdquo;
           </p>
           <p>
             We don’t just offer temporary aid; we build permanent foundations through education, vocational empowerment, and legal advocacy. At TWS, our goal is simple yet profound: <span className="text-stone-900 font-medium">to transform displacement into dignity.</span>
@@ -39,10 +40,12 @@ const OurRoots: React.FC = () => {
         <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-terracotta/10 rounded-full blur-3xl"></div>
         
         <div className="relative image-mask w-full aspect-[4/5] bg-stone-200 overflow-hidden shadow-2xl border-8 border-white">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop" 
             alt="Tribal Weaver working on a legacy piece"
-            className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-1000"
+            fill
+            className="object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-1000"
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
         

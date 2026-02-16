@@ -1,5 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+'use client';
+
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 interface Milestone {
   year: string;
@@ -91,10 +94,12 @@ const LegacyTimeline: React.FC = () => {
               
               <div className="relative overflow-hidden rounded-xl bg-white p-1.5 md:p-2 shadow-2xl border border-stone-100">
                 <div className="relative overflow-hidden rounded-lg aspect-video grayscale hover:grayscale-0 transition-all duration-1000">
-                  <img 
+                  <Image 
                     src={`https://images.unsplash.com/photo-${index === 0 ? '1488521787991-ed7bbaae773c' : index === 1 ? '1544256718-3bcf237f3974' : index === 2 ? '1589829545856-d10d557cf95f' : '1542810634-71277d95dcbb'}?q=80&w=1200&auto=format&fit=crop`} 
                     alt={item.title}
-                    className="w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
+                    fill
+                    className="object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
+                    sizes="(max-width: 768px) 100vw, 42vw"
                   />
                   <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors duration-700"></div>
                 </div>
