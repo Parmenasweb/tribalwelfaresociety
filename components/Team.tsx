@@ -3,6 +3,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 type TeamMember = {
   name: string;
@@ -11,6 +12,7 @@ type TeamMember = {
   email: string;
   phone: string;
   accent: 'terracotta' | 'gold' | 'earthy-green';
+  image: string;
 };
 
 const team: TeamMember[] = [
@@ -21,6 +23,7 @@ const team: TeamMember[] = [
     email: 'founder@tribalwelfaresociety.org',
     phone: '+91 98765 43210',
     accent: 'terracotta',
+    image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801efb?q=80&w=800&auto=format&fit=crop&facepad=3',
   },
   {
     name: 'Secretary',
@@ -29,6 +32,7 @@ const team: TeamMember[] = [
     email: 'secretary@tribalwelfaresociety.org',
     phone: '+91 98765 43211',
     accent: 'gold',
+    image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=800&auto=format&fit=crop&facepad=3',
   },
   {
     name: 'Program Coordinator',
@@ -37,6 +41,7 @@ const team: TeamMember[] = [
     email: 'programs@tribalwelfaresociety.org',
     phone: '+91 98765 43212',
     accent: 'earthy-green',
+    image: 'https://images.unsplash.com/photo-1615109398623-88346a601842?q=80&w=800&auto=format&fit=crop&facepad=3',
   },
 ];
 
@@ -89,8 +94,22 @@ const Team: React.FC = () => {
                 />
 
                 <div className="relative">
-                  <div className={`w-14 h-14 rounded-2xl ring-1 ${a.ring} bg-white dark:bg-stone-900 flex items-center justify-center mb-6`}>
-                    <div className={`w-2.5 h-2.5 rounded-full ${a.dot}`} />
+                  <div className="flex items-center gap-4 mb-6">
+                    <div
+                      className="relative w-16 h-16 md:w-20 md:h-20 rounded-full ring-2 ring-offset-2 ring-offset-[#F5F5F0] dark:ring-offset-stone-900 flex-shrink-0 overflow-hidden"
+                      style={{ boxShadow: '0 18px 45px rgba(0,0,0,0.18)' }}
+                    >
+                      <Image
+                        src={m.image}
+                        alt={m.name}
+                        width={96}
+                        height={96}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className={`w-10 h-10 rounded-2xl ring-1 ${a.ring} bg-white dark:bg-stone-900 flex items-center justify-center`}>
+                      <div className={`w-2.5 h-2.5 rounded-full ${a.dot}`} />
+                    </div>
                   </div>
 
                   <h3 className="serif text-2xl md:text-3xl font-bold text-stone-900 dark:text-stone-100 mb-1">
