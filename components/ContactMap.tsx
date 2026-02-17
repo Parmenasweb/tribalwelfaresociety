@@ -55,7 +55,7 @@ const ContactMap: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 md:py-32 lg:py-40 bg-gradient-to-b from-white to-[#F5F5F0] dark:from-stone-900 dark:to-stone-800 border-t border-stone-200/50 dark:border-stone-700/50 overflow-x-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -204,9 +204,11 @@ const ContactMap: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full py-4 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-xl font-bold uppercase tracking-wider hover:bg-stone-800 dark:hover:bg-stone-200 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="w-full py-4 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-2xl text-white relative overflow-hidden group"
               >
-                Send Message
+                <span className="absolute inset-0 bg-gradient-to-r from-terracotta via-gold to-earthy-green opacity-95" />
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
+                <span className="relative z-10">Send Message</span>
               </button>
             </form>
 

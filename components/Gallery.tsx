@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Gallery: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const images = [
     { 
@@ -110,6 +112,24 @@ const Gallery: React.FC = () => {
     }
   }, [selectedIndex, images.length]);
 
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null;
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const onTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const deltaX = touchStartX.current - touchEndX.current;
+    const threshold = 50;
+    if (Math.abs(deltaX) < threshold) return;
+    if (deltaX > 0) nextImage();
+    else prevImage();
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (selectedIndex === null) return;
@@ -123,7 +143,7 @@ const Gallery: React.FC = () => {
 
   return (
     <section id="gallery" className="py-24 md:py-32 bg-[#F5F5F0] dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-700/50 overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 max-w-7xl">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -135,7 +155,7 @@ const Gallery: React.FC = () => {
           <p className="text-stone-500 dark:text-stone-400 text-base md:text-lg font-light italic">Visualizing Our Mission in Action</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
           {images.map((img, i) => (
             <motion.div 
               key={i} 
@@ -144,14 +164,14 @@ const Gallery: React.FC = () => {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: i * 0.05, duration: 0.5 }}
               onClick={() => openLightbox(i)}
-              className="relative aspect-[4/5] overflow-hidden group rounded-xl md:rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+              className="relative aspect-square overflow-hidden group rounded-xl md:rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
             >
               <Image 
                 src={img.url} 
                 alt={img.caption}
                 fill
                 className="object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" 
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
@@ -184,7 +204,7 @@ const Gallery: React.FC = () => {
 
             <button 
               onClick={prevImage}
-              className="absolute left-4 md:left-12 p-3 md:p-4 rounded-full bg-white/10 dark:bg-stone-800/50 border border-white/20 hover:bg-white/20 transition-colors z-[110] hidden sm:flex items-center justify-center"
+              className="absolute left-3 md:left-12 p-3 md:p-4 rounded-full bg-white/10 dark:bg-stone-800/50 border border-white/20 hover:bg-white/20 transition-colors z-[110] flex items-center justify-center"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
@@ -198,6 +218,9 @@ const Gallery: React.FC = () => {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="relative max-w-[95vw] md:max-w-[85vw] max-h-[85vh] flex flex-col items-center"
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
             >
               <div className="relative w-full h-full max-h-[70vh] overflow-hidden rounded-xl md:rounded-2xl shadow-2xl mb-4">
                 <Image 
@@ -222,7 +245,7 @@ const Gallery: React.FC = () => {
 
             <button 
               onClick={nextImage}
-              className="absolute right-4 md:right-12 p-3 md:p-4 rounded-full bg-white/10 dark:bg-stone-800/50 border border-white/20 hover:bg-white/20 transition-colors z-[110] hidden sm:flex items-center justify-center"
+              className="absolute right-3 md:right-12 p-3 md:p-4 rounded-full bg-white/10 dark:bg-stone-800/50 border border-white/20 hover:bg-white/20 transition-colors z-[110] flex items-center justify-center"
               aria-label="Next image"
             >
               <ChevronRight className="w-6 h-6 text-white" />

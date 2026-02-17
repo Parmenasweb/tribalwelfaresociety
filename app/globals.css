@@ -81,8 +81,8 @@ body {
 /* Container padding - reduced for nav fit on larger screens */
 @media (min-width: 1536px) {
   .container {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
@@ -136,4 +136,24 @@ a:hover .nav-link-underline {
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+/* Radix Accordion animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@layer utilities {
+  .animate-accordion-down {
+    animation: accordion-down 220ms ease-out;
+  }
+  .animate-accordion-up {
+    animation: accordion-up 220ms ease-out;
+  }
 }

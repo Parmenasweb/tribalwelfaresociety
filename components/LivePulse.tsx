@@ -15,12 +15,20 @@ const LivePulse: React.FC = () => {
     <div className="space-y-20">
       <div className="flex flex-col md:flex-row justify-between items-end gap-8">
         <div>
-          <span className="text-earthy-green font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Groundwater Impact</span>
+          <span className="text-earthy-green font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">From Our Social Feeds</span>
           <h2 className="serif text-5xl md:text-8xl text-stone-900 dark:text-stone-100 leading-[0.9]">Live Records.</h2>
+          <p className="mt-4 max-w-xl text-stone-600 dark:text-stone-300 text-base md:text-lg font-light leading-relaxed">
+            Moments from the field, shared in real time. Follow our socials for live updates, behind-the-scenes stories, and urgent calls to action.
+          </p>
         </div>
-        <button className="text-stone-900 dark:text-stone-100 border-b-2 border-stone-200 dark:border-stone-700 pb-2 text-xs font-bold tracking-[0.3em] uppercase hover:border-terracotta transition-colors">
-          View Full Archive @tribalwelfaresociety
-        </button>
+        <a
+          href="https://www.instagram.com/tribalwelfaresociety"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-stone-900 dark:text-stone-100 border-b-2 border-stone-200 dark:border-stone-700 pb-2 text-xs font-bold tracking-[0.3em] uppercase hover:border-terracotta transition-colors"
+        >
+          Follow @tribalwelfaresociety
+        </a>
       </div>
 
       <div className="columns-1 md:columns-3 gap-8 space-y-8">

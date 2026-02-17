@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Heart, Shield, Users } from 'lucide-react';
 
 // Add hero-sample.jpg (or .png) to /public to display as hero background
-const HERO_IMAGE_PATH = '/hero-sample.jpg';
+const HERO_IMAGE_PATH = '/hero-sample.svg';
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       ref={heroRef}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-stone-50 via-white to-stone-100 dark:from-stone-950 dark:via-stone-900 dark:to-stone-950"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F5F5F0] via-white/60 to-[#F5F5F0] dark:from-stone-950 dark:via-stone-900 dark:to-stone-950"
     >
       {/* Hero Background Image - add hero-sample.jpg to /public to use */}
       {heroImageLoaded !== false && (
@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
             onLoad={() => setHeroImageLoaded(true)}
             onError={() => setHeroImageLoaded(false)}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white dark:from-stone-950/90 dark:via-stone-900/80 dark:to-stone-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F5F5F0]/92 via-white/70 to-[#F5F5F0]/92 dark:from-stone-950/90 dark:via-stone-900/80 dark:to-stone-950" />
         </div>
       )}
 
@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-20 md:py-32 text-center max-w-7xl">
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-20 md:py-32 text-center max-w-7xl">
         {/* Logo */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -133,16 +133,18 @@ const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
             <a 
               href="#roots"
-              className="group relative px-8 md:px-12 py-4 md:py-5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              className="group relative overflow-hidden px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl text-white"
             >
-              Explore Our Impact
+              <span className="absolute inset-0 bg-gradient-to-r from-terracotta via-gold to-earthy-green opacity-95" />
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
+              <span className="relative z-10">Explore Our Impact</span>
             </a>
             
             <a 
               href="#support"
-              className="group px-8 md:px-12 py-4 md:py-5 bg-transparent border-2 border-stone-900 dark:border-stone-100 text-stone-900 dark:text-stone-100 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 hover:scale-105 flex items-center gap-2"
+              className="group px-8 md:px-12 py-4 md:py-5 bg-transparent border-2 border-terracotta/50 dark:border-gold/60 text-stone-900 dark:text-stone-100 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 hover:scale-105 flex items-center gap-2 hover:border-terracotta dark:hover:border-gold"
             >
-              Support Our Mission
+              Donate
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
             </a>
           </div>

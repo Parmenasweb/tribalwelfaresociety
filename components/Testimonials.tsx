@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
@@ -21,7 +21,7 @@ const testimonials: Testimonial[] = [
     name: 'Priya Meena',
     role: 'Artisan & Weaver',
     location: 'Assam',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1615109398623-88346a601842?q=80&w=1200&auto=format&fit=crop&facepad=3',
     quote: 'Tribal Welfare Society gave me the skills to support my family. Today, I run my own weaving business and train other women. This organization didn\'t just help me—it transformed my entire community.',
     program: 'Vocational Empowerment',
   },
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
     name: 'Rajesh Kumar',
     role: 'Community Leader',
     location: 'Manipur',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1609252925148-b0a08cdbfe77?q=80&w=1200&auto=format&fit=crop&facepad=3',
     quote: 'Through their legal advocacy programs, we reclaimed our ancestral lands. The legal literacy camps empowered our community to understand and fight for our constitutional rights.',
     program: 'Legal Advocacy',
   },
@@ -39,7 +39,7 @@ const testimonials: Testimonial[] = [
     name: 'Sunita Devi',
     role: 'Beneficiary & Volunteer',
     location: 'Nagaland',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=1200&auto=format&fit=crop&facepad=3',
     quote: 'When floods displaced our village, Tribal Welfare Society was the first to arrive. They provided immediate relief and then helped us rebuild sustainably. Their commitment goes beyond temporary aid.',
     program: 'Relief & Rehabilitation',
   },
@@ -48,7 +48,7 @@ const testimonials: Testimonial[] = [
     name: 'Amit Singh',
     role: 'Youth Coordinator',
     location: 'Mizoram',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801efb?q=80&w=1200&auto=format&fit=crop&facepad=3',
     quote: 'The education programs opened doors I never knew existed. Now I help coordinate youth programs, ensuring the next generation has even better opportunities than I did.',
     program: 'Holistic Development',
   },
@@ -56,6 +56,8 @@ const testimonials: Testimonial[] = [
 
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -65,9 +67,34 @@ const Testimonials: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null;
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const onTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const deltaX = touchStartX.current - touchEndX.current;
+    const threshold = 50;
+    if (Math.abs(deltaX) < threshold) return;
+    if (deltaX > 0) nextTestimonial();
+    else prevTestimonial();
+  };
+
   return (
-    <section id="testimonials" className="py-24 md:py-32 lg:py-40 bg-white dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-700/50 overflow-x-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl">
+    <section id="testimonials" className="py-24 md:py-32 lg:py-40 bg-white/70 dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-700/50 overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,13 +105,31 @@ const Testimonials: React.FC = () => {
           <h2 className="serif text-5xl md:text-8xl text-[#121212] dark:text-stone-100 mb-6">
             Stories That Inspire Change
           </h2>
-          <p className="max-w-2xl mx-auto text-stone-600 dark:text-stone-400 text-lg md:text-xl font-light">
+          <p className="max-w-2xl mx-auto text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light">
             Real stories from real people whose lives have been transformed through our programs.
           </p>
         </motion.div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="relative">
+          <div className="relative touch-pan-y">
+            {/* Mobile quick navigation (keeps next/prev visible without scrolling) */}
+            <div className="md:hidden absolute inset-y-0 left-0 right-0 z-20 pointer-events-none flex items-center justify-between px-2">
+              <button
+                onClick={prevTestimonial}
+                className="pointer-events-auto p-3 rounded-full bg-white/70 dark:bg-stone-800/70 backdrop-blur border border-stone-200/60 dark:border-stone-700/60 shadow-lg"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="w-5 h-5 text-stone-900 dark:text-stone-100" />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="pointer-events-auto p-3 rounded-full bg-white/70 dark:bg-stone-800/70 backdrop-blur border border-stone-200/60 dark:border-stone-700/60 shadow-lg"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="w-5 h-5 text-stone-900 dark:text-stone-100" />
+              </button>
+            </div>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -93,6 +138,9 @@ const Testimonials: React.FC = () => {
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
                 className="bg-gradient-to-br from-stone-50 to-white dark:from-stone-800 dark:to-stone-900 rounded-3xl p-8 md:p-12 shadow-2xl border border-stone-200 dark:border-stone-700"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
               >
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                   <div className="relative flex-shrink-0">
@@ -112,7 +160,7 @@ const Testimonials: React.FC = () => {
 
                   <div className="flex-1 text-center md:text-left">
                     <div className="mb-6">
-                      <p className="serif text-2xl md:text-3xl text-stone-900 dark:text-stone-100 italic leading-relaxed mb-6">
+                      <p className="serif text-xl md:text-3xl text-stone-900 dark:text-stone-100 italic leading-relaxed mb-6">
                         &ldquo;{testimonials[currentIndex].quote}&rdquo;
                       </p>
                     </div>

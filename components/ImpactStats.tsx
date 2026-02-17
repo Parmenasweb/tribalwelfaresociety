@@ -124,7 +124,7 @@ function AnimatedNumber({ value }: { value: number }) {
 const ImpactStats: React.FC = () => {
   return (
     <section id="impact" className="py-24 md:py-32 lg:py-40 bg-gradient-to-b from-[#F5F5F0] to-white dark:from-stone-900 dark:to-stone-800 border-t border-stone-200/50 dark:border-stone-700/50 overflow-x-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

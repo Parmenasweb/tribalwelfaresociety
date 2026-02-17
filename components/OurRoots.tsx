@@ -44,7 +44,7 @@ const OurRoots: React.FC = () => {
             src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop" 
             alt="Tribal Weaver working on a legacy piece"
             fill
-            className="object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-1000"
+            className="object-cover transition-transform duration-700 hover:scale-[1.02]"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>

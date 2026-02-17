@@ -93,7 +93,7 @@ const LegacyTimeline: React.FC = () => {
               </p>
               
               <div className="relative overflow-hidden rounded-xl bg-white dark:bg-stone-800 p-1.5 md:p-2 shadow-2xl border border-stone-100 dark:border-stone-700">
-                <div className="relative overflow-hidden rounded-lg aspect-video grayscale hover:grayscale-0 transition-all duration-1000">
+                <div className="relative overflow-hidden rounded-lg aspect-video transition-transform duration-700">
                   <Image 
                     src={`https://images.unsplash.com/photo-${index === 0 ? '1488521787991-ed7bbaae773c' : index === 1 ? '1544256718-3bcf237f3974' : index === 2 ? '1589829545856-d10d557cf95f' : '1542810634-71277d95dcbb'}?q=80&w=1200&auto=format&fit=crop`} 
                     alt={item.title}

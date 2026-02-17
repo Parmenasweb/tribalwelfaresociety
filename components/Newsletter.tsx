@@ -39,8 +39,18 @@ const Newsletter: React.FC = () => {
   ];
 
   return (
-    <section id="updates" className="py-24 md:py-32 lg:py-40 bg-white dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-700/50 overflow-x-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl">
+    <section id="updates" className="py-24 md:py-32 lg:py-40 bg-white/70 dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-700/50 overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 max-w-7xl">
+        <div className="text-center mb-14 md:mb-20">
+          <span className="text-gold font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Updates</span>
+          <h2 className="serif text-4xl md:text-6xl lg:text-7xl text-stone-900 dark:text-stone-100 mb-5">
+            Stay Connected
+          </h2>
+          <p className="max-w-2xl mx-auto text-stone-600 dark:text-stone-300 text-base md:text-lg font-light leading-relaxed">
+            Subscribe for program updates, field stories, and transparent reporting—delivered with respect for your inbox.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
           {/* Newsletter Signup */}
           <motion.div
@@ -85,9 +95,11 @@ const Newsletter: React.FC = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-xl font-bold uppercase tracking-wider hover:bg-stone-800 dark:hover:bg-stone-200 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full py-4 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-2xl text-white relative overflow-hidden group"
                 >
-                  Subscribe Now
+                  <span className="absolute inset-0 bg-gradient-to-r from-terracotta via-gold to-earthy-green opacity-95" />
+                  <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
+                  <span className="relative z-10">Subscribe</span>
                 </button>
                 <p className="text-xs text-stone-500 dark:text-stone-500 text-center">
                   We respect your privacy. Unsubscribe at any time.
