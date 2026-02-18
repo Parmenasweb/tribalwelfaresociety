@@ -156,7 +156,7 @@ const Gallery: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
-          {images.map((img, i) => (
+          {images.slice(0, 15).map((img, i) => (
             <motion.div 
               key={i} 
               initial={{ opacity: 0, scale: 0.95 }}
@@ -182,6 +182,24 @@ const Gallery: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* View Full Gallery Link */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12 md:mt-16"
+        >
+          <a
+            href="/gallery"
+            className="group inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl text-white relative overflow-hidden"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-terracotta via-gold to-earthy-green opacity-95" />
+            <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
+            <span className="relative z-10">View Full Gallery</span>
+            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </motion.div>
       </div>
 
       {/* Lightbox */}

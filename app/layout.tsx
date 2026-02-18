@@ -78,7 +78,6 @@ export default function RootLayout({
       </head>
       <body className={`${playfair.variable} ${montserrat.variable} ${inter.variable}`}>
         <ThemeProvider>
-          <div className="grain"></div>
           <div className="paper-overlay"></div>
           {children}
         </ThemeProvider>

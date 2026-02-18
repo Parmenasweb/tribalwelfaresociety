@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       ref={heroRef}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F5F5F0] via-white/60 to-[#F5F5F0] dark:from-stone-950 dark:via-stone-900 dark:to-stone-950"
+      className="relative min-h-[85svh] max-h-[130svh] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F5F5F0] via-white/60 to-[#F5F5F0] dark:from-stone-950 dark:via-stone-900 dark:to-stone-950"
     >
       {/* Hero Background Image */}
       <div className="absolute inset-0 overflow-hidden">
@@ -29,10 +29,11 @@ const Hero: React.FC = () => {
           alt="Artisanal weave and community silhouette"
           fill
           priority
-          className="object-cover opacity-20 dark:opacity-100"
+          className="object-cover opacity-85 dark:opacity-55 saturate-[1.15] contrast-[1.1]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F5F5F0]/92 via-white/70 to-[#F5F5F0]/92 dark:from-stone-950/90 dark:via-stone-900/80 dark:to-stone-950" />
+        {/* Light mode overlay: slightly darker (not white-wash) to keep image visible */} 
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/10 via-stone-900/0 to-stone-900/12 dark:from-stone-950/70 dark:via-stone-900/55 dark:to-stone-950" />
       </div>
 
       {/* Decorative Background Elements */}
@@ -43,7 +44,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-20 md:py-32 text-center max-w-7xl">
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-16 md:py-24 text-center max-w-7xl">
         {/* Logo */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -82,7 +83,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-8 md:mb-12"
         >
-          <h1 className="serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[1.1] tracking-tight text-stone-900 dark:text-stone-100 mb-6">
+          <h1 className="serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-stone-900 dark:text-stone-100 mb-6">
             Transforming{' '}
             <span className="block mt-2 bg-gradient-to-r from-terracotta via-gold to-earthy-green bg-clip-text text-transparent">
               Displacement into Dignity
