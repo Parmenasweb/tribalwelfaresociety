@@ -132,7 +132,7 @@ const ImpactStats: React.FC = () => {
           className="text-center mb-20"
         >
           <span className="text-gold font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Our Impact</span>
-          <h2 className="serif text-5xl md:text-8xl text-[#121212] dark:text-stone-100 mb-6">
+          <h2 className="serif text-5xl md:text-8xl text-stone-900 dark:text-stone-100 mb-6">
             Transforming Lives, One Story at a Time
           </h2>
           <p className="max-w-2xl mx-auto text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light">
@@ -153,7 +153,7 @@ const ImpactStats: React.FC = () => {
               <div className={`w-16 h-16 ${stat.color} mb-6 flex items-center justify-center rounded-2xl bg-stone-100 dark:bg-stone-700/50 group-hover:scale-110 transition-transform duration-500`}>
                 {stat.icon}
               </div>
-              
+
               <div className="mb-4">
                 <div className={`serif text-5xl md:text-6xl font-bold ${stat.color} mb-2`}>
                   <AnimatedNumber value={stat.value} />

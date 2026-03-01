@@ -106,7 +106,7 @@ const Testimonials: React.FC = () => {
           className="text-center mb-20"
         >
           <span className="text-earthy-green font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Voices of Impact</span>
-          <h2 className="serif text-5xl md:text-8xl text-[#121212] dark:text-stone-100 mb-6">
+          <h2 className="serif text-5xl md:text-8xl text-stone-900 dark:text-stone-100 mb-6">
             Stories That Inspire Change
           </h2>
           <p className="max-w-2xl mx-auto text-stone-600 dark:text-stone-300 text-lg md:text-xl font-light">

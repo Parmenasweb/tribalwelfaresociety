@@ -17,15 +17,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    // Check localStorage or system preference
+    // Check localStorage or default to light
     const savedTheme = localStorage.getItem('theme') as Theme;
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    setTheme(savedTheme || systemTheme);
+    setTheme(savedTheme || 'light');
   }, []);
 
   useEffect(() => {
     if (!mounted) return;
-    
+
     const root = document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');
