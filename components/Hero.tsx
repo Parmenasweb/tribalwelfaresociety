@@ -46,18 +46,19 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-16 md:py-24 text-center max-w-7xl">
         {/* Logo */}
+        <br />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center mb-8 md:mb-12"
+          className="flex justify-center mb-8 md:mb-15"
         >
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-tr from-terracotta/20 via-gold/20 to-earthy-green/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="relative bg-gradient-to-tr from-terracotta via-gold to-earthy-green rounded-full p-[2px] shadow-lg">
-              <div className="w-20 h-20 md:w-24 md:h-24  flex items-center justify-center">
+              {/* <div className="w-20 h-20 md:w-24 md:h-24  flex items-center justify-center">
 
-              </div>
+              </div> */}
             </div>
           </div>
         </motion.div>
