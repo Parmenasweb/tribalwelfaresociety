@@ -27,18 +27,31 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tribalwelfaresociety.org'),
+  metadataBase: new URL('https://www.tribalwelfaresociety.org'),
   title: {
     default: 'Tribal Welfare Society | Empowering Communities Since 1993',
     template: '%s | Tribal Welfare Society',
   },
   description: 'Empowering the displaced and underprivileged since 1993. Restoring human dignity through craftsmanship and justice.',
-  keywords: ['tribal welfare', 'NGO India', 'community empowerment', 'legal advocacy', 'vocational training', 'tribal rights'],
+  keywords: [
+    'tribal welfare society',
+    'tribal welfare ngos',
+    'best ngo in northeast india',
+    'NGOs for women in northeast',
+    'NGOs for children education',
+    'charitable trusts in india',
+    'NGOs for blind and physically challenged',
+    'NGOs for food donation',
+    'women led NGOs in india',
+    'community empowerment',
+    'legal advocacy for tribes',
+    'vocational training ngo'
+  ],
   authors: [{ name: 'Tribal Welfare Society' }],
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://tribalwelfaresociety.org',
+    url: 'https://www.tribalwelfaresociety.org',
     siteName: 'Tribal Welfare Society',
     title: 'Tribal Welfare Society | Empowering Communities Since 1993',
     description: 'Empowering the displaced and underprivileged since 1993. Restoring human dignity through craftsmanship and justice.',

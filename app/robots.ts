@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://tribalwelfaresociety.org/sitemap.xml',
+    sitemap: 'https://www.tribalwelfaresociety.org/sitemap.xml',
   };
 }

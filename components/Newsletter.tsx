@@ -2,39 +2,75 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, CheckCircle, Calendar } from 'lucide-react';
+import { Mail, CheckCircle, Calendar, Loader2, AlertCircle } from 'lucide-react';
+
+type SubState = 'idle' | 'loading' | 'success' | 'error';
 
 const Newsletter: React.FC = () => {
   const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
+  const [subState, setSubState] = useState<SubState>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle subscription
-    console.log('Subscribed:', email);
-    setSubscribed(true);
-    setEmail('');
-    setTimeout(() => setSubscribed(false), 5000);
+    setSubState('loading');
+
+    try {
+      // NOTE: Ensure you add your actual access key here before deployment.
+      const formData = new FormData();
+      formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+      formData.append("email", email);
+      formData.append("subject", "New Newsletter Subscriber — Tribal Welfare Society");
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubState('success');
+        setEmail('');
+      } else {
+        console.error("Web3Forms error:", data.message);
+        setSubState('error');
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      setSubState('error');
+    }
   };
 
   const updates = [
     {
-      date: 'Feb 15, 2026',
-      title: 'New Handloom Center Opens in Assam',
+      date: 'March 1, 2026',
+      title: 'Expanding Our Reach: New Handloom Center in Assam',
       category: 'Program Update',
-      excerpt: 'Our latest vocational training center has opened, providing opportunities for 50+ artisan families.',
+      excerpt: 'We are thrilled to announce the opening of our newest vocational training center, providing modern machinery and opportunities for 50+ artisan families in rural Assam.',
     },
     {
-      date: 'Feb 10, 2026',
-      title: 'Legal Victory: 25 Families Reclaim Land Rights',
+      date: 'February 15, 2026',
+      title: 'Legal Victory: 25 Families Reclaim Ancestral Land Rights',
       category: 'Impact Story',
-      excerpt: 'Through our legal advocacy program, 25 families successfully reclaimed their ancestral lands.',
+      excerpt: 'Through our intense legal advocacy programs and literacy camps, we successfully helped 25 displaced families understand their constitutional rights and reclaim their ancestral lands.',
     },
     {
-      date: 'Feb 5, 2026',
-      title: 'Annual Report 2025 Released',
+      date: 'January 28, 2026',
+      title: '2025 Annual Impact Report Released',
       category: 'Transparency',
-      excerpt: 'View our comprehensive annual report showcasing impact, finances, and future plans.',
+      excerpt: 'View our comprehensive annual report detailing our financial transparency, milestones achieved across four states, and our strategic goals for the upcoming decade.',
+    },
+    {
+      date: 'January 10, 2026',
+      title: 'Emergency Relief Dispatched to Flood-Affected Regions',
+      category: 'Relief Operation',
+      excerpt: 'Our volunteer teams immediately responded to the recent floods in the northeast, setting up temporary camps and distributing crucial medical aid and food supplies to over 500 individuals.',
+    },
+    {
+      date: 'December 15, 2025',
+      title: 'Holistic Education Scholarship Winners Announced',
+      category: 'Youth Development',
+      excerpt: 'Congratulations to the 120 bright young minds who were awarded the TWS Holistic Education Scholarship this year. We are proud to support your journey to higher education.',
     },
   ];
 
@@ -69,7 +105,7 @@ const Newsletter: React.FC = () => {
               Subscribe to our newsletter and receive updates on our programs, impact stories, and ways to get involved.
             </p>
 
-            {subscribed ? (
+            {subState === 'success' ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -78,11 +114,17 @@ const Newsletter: React.FC = () => {
                 <CheckCircle className="w-12 h-12 text-earthy-green mx-auto mb-4" />
                 <p className="text-earthy-green font-bold text-lg">Thank you for subscribing!</p>
                 <p className="text-stone-600 dark:text-stone-300 text-sm mt-2">
-                  Check your email to confirm your subscription.
+                  You&apos;ll receive updates from Tribal Welfare Society in your inbox.
                 </p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {subState === 'error' && (
+                  <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-xl px-4 py-3">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                    Something went wrong. Please try again later.
+                  </div>
+                )}
                 <div>
                   <input
                     type="email"
@@ -90,16 +132,21 @@ const Newsletter: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="your.email@example.com"
-                    className="w-full px-4 py-4 rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-terracotta transition-all text-lg"
+                    className="w-full px-4 py-4 rounded-xl border-2 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-terracotta transition-all text-lg placeholder:text-stone-400"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-2xl text-white relative overflow-hidden group"
+                  disabled={subState === 'loading'}
+                  className="w-full py-4 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 shadow-lg hover:shadow-2xl text-white relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-terracotta via-gold to-earthy-green opacity-95" />
                   <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
-                  <span className="relative z-10">Subscribe</span>
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {subState === 'loading' ? (
+                      <><Loader2 className="w-4 h-4 animate-spin" /> Subscribing...</>
+                    ) : 'Subscribe'}
+                  </span>
                 </button>
                 <p className="text-xs text-stone-500 dark:text-stone-500 text-center">
                   We respect your privacy. Unsubscribe at any time.

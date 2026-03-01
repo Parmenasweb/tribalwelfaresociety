@@ -33,17 +33,17 @@ const LivePulse: React.FC = () => {
 
       <div className="columns-1 md:columns-3 gap-8 space-y-8">
         {images.map((img, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             className="relative overflow-hidden group rounded-2xl bg-white dark:bg-stone-800 border border-stone-100 dark:border-stone-700 shadow-sm hover:shadow-2xl transition-all duration-700 reveal reveal-up"
             style={{ transitionDelay: `${i * 0.1}s` }}
           >
             <div className="relative aspect-[4/5] overflow-hidden">
-              <Image 
-                src={img.url} 
+              <Image
+                src={img.url}
                 alt={img.caption}
                 fill
-                className="object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" 
+                className="object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
             </div>

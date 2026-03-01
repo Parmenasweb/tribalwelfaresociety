@@ -18,41 +18,45 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Priya Meena',
-    role: 'Artisan & Weaver',
-    location: 'Assam',
-    image: 'https://images.unsplash.com/photo-1615109398623-88346a601842?q=80&w=1200&auto=format&fit=crop&facepad=3',
-    quote: 'Tribal Welfare Society gave me the skills to support my family. Today, I run my own weaving business and train other women. This organization didn\'t just help me—it transformed my entire community.',
+    name: 'Sanjeev Marak',
+    role: 'Local Artisan & Entrepreneur',
+    location: 'Meghalaya',
+    image: '',
+    quote: 'The vocational training center provided by TWS gave me the modern machinery and business skills I needed to scale my handloom work. Today, I employ five other artisans from my village, turning our traditional craft into a sustainable business.',
     program: 'Vocational Empowerment',
   },
   {
     id: 2,
-    name: 'Rajesh Kumar',
-    role: 'Community Leader',
-    location: 'Manipur',
-    image: 'https://images.unsplash.com/photo-1609252925148-b0a08cdbfe77?q=80&w=1200&auto=format&fit=crop&facepad=3',
-    quote: 'Through their legal advocacy programs, we reclaimed our ancestral lands. The legal literacy camps empowered our community to understand and fight for our constitutional rights.',
-    program: 'Legal Advocacy',
-  },
-  {
-    id: 3,
-    name: 'Sunita Devi',
-    role: 'Beneficiary & Volunteer',
-    location: 'Nagaland',
-    image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=1200&auto=format&fit=crop&facepad=3',
-    quote: 'When floods displaced our village, Tribal Welfare Society was the first to arrive. They provided immediate relief and then helped us rebuild sustainably. Their commitment goes beyond temporary aid.',
+    name: 'Dr. Rebecca Singsit',
+    role: 'Medical Volunteer',
+    location: 'Dimapur, Nagaland',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop&facepad=3',
+    quote: 'Working alongside Tribal Welfare Society during the recent flood relief camps was eye-opening. Their response time, organization, and genuine care for the displaced families is unmatched. They don\'t just deliver supplies; they deliver hope.',
     program: 'Relief & Rehabilitation',
   },
   {
+    id: 3,
+    name: 'Lily Chongloi',
+    role: 'Community Advocate',
+    location: 'Churachandpur, Manipur',
+    image: '',
+    quote: 'Before the legal literacy camps, our community had no idea how to access government schemes or protect our land rights. TWS provided us with the exact legal knowledge and representation we desperately needed to stand our ground.',
+    program: 'Legal Advocacy',
+  },
+  {
     id: 4,
-    name: 'Amit Singh',
-    role: 'Youth Coordinator',
-    location: 'Mizoram',
+    name: 'Daniel Kipgen',
+    role: 'Youth Program Graduate',
+    location: 'New Delhi',
     image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801efb?q=80&w=1200&auto=format&fit=crop&facepad=3',
-    quote: 'The education programs opened doors I never knew existed. Now I help coordinate youth programs, ensuring the next generation has even better opportunities than I did.',
+    quote: 'I grew up in an underprivileged neighborhood with limited access to quality education. The TWS scholarship and mentorship programs completely changed my trajectory. I am now pursuing my Master\'s degree and plan to return to help my community.',
     program: 'Holistic Development',
   },
 ];
+
+const getInitials = (name: string) => {
+  return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+};
 
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -145,13 +149,22 @@ const Testimonials: React.FC = () => {
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                   <div className="relative flex-shrink-0">
                     <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-terracotta/20 shadow-xl">
-                      <Image
-                        src={testimonials[currentIndex].image}
-                        alt={testimonials[currentIndex].name}
-                        width={160}
-                        height={160}
-                        className="w-full h-full object-cover"
-                      />
+                      {testimonials[currentIndex].image ? (
+                        <Image
+                          src={testimonials[currentIndex].image}
+                          alt={testimonials[currentIndex].name}
+                          width={160}
+                          height={160}
+                          sizes="(max-width: 768px) 128px, 160px"
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
+                          <span className="serif text-5xl font-bold text-terracotta/50">
+                            {getInitials(testimonials[currentIndex].name)}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <div className="absolute -bottom-2 -right-2 bg-gold p-3 rounded-full shadow-lg">
                       <Quote className="w-6 h-6 text-stone-900" />
@@ -203,11 +216,10 @@ const Testimonials: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === currentIndex
-                        ? 'w-8 bg-terracotta'
-                        : 'w-2 bg-stone-300 dark:bg-stone-600'
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                      ? 'w-8 bg-terracotta'
+                      : 'w-2 bg-stone-300 dark:bg-stone-600'
+                      }`}
                     aria-label={`Go to testimonial ${index + 1}`}
                   />
                 ))}

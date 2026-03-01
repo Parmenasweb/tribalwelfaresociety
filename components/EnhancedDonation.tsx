@@ -32,6 +32,8 @@ const EnhancedDonation: React.FC = () => {
   return (
     <section id="support" className="py-24 md:py-32 lg:py-40 bg-[#F5F5F0] dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-700/50 overflow-x-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 max-w-7xl">
+
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,6 +48,35 @@ const EnhancedDonation: React.FC = () => {
             Your contribution is more than a donation—it is a direct investment in human dignity.
           </p>
         </motion.div>
+
+        {/* Financial Details */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white dark:bg-stone-800 rounded-3xl p-8 md:p-12 border border-stone-200 dark:border-stone-700"
+        >
+          <h4 className="serif text-3xl text-stone-900 dark:text-stone-100 mb-8">Financial Details</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { label: 'Account Name', value: 'Tribal Welfare Society' },
+              { label: 'Bank', value: 'State Bank of India (SBI)' },
+              { label: 'Account Number', value: '41808414067' },
+              { label: 'IFSC Code', value: 'SBIN0015768' },
+            ].map((item) => (
+              <div key={item.label} className="group">
+                <p className="text-stone-400 dark:text-stone-500 uppercase text-[9px] tracking-[0.3em] font-bold mb-2 group-hover:text-terracotta transition-colors">
+                  {item.label}
+                </p>
+                <p className="text-stone-900 dark:text-stone-100 font-bold text-lg sans-alt">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+        <br />
+        <br />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 mb-16">
           {/* Donation Tiers */}
@@ -64,11 +95,10 @@ const EnhancedDonation: React.FC = () => {
                       setSelectedAmount(tier.amount);
                       setCustomAmount('');
                     }}
-                    className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
-                      selectedAmount === tier.amount
-                        ? 'border-terracotta bg-terracotta/10 dark:bg-terracotta/20'
-                        : 'border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 hover:border-terracotta/50'
-                    }`}
+                    className={`p-6 rounded-2xl border-2 transition-all duration-300 ${selectedAmount === tier.amount
+                      ? 'border-terracotta bg-terracotta/10 dark:bg-terracotta/20'
+                      : 'border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 hover:border-terracotta/50'
+                      }`}
                   >
                     <div className="text-center">
                       <div className="serif text-2xl md:text-3xl font-bold text-stone-900 dark:text-stone-100 mb-2">
@@ -105,14 +135,12 @@ const EnhancedDonation: React.FC = () => {
               <div className="mt-6 flex items-center gap-3">
                 <button
                   onClick={() => setIsRecurring(!isRecurring)}
-                  className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${
-                    isRecurring ? 'bg-terracotta' : 'bg-stone-300 dark:bg-stone-600'
-                  }`}
+                  className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${isRecurring ? 'bg-terracotta' : 'bg-stone-300 dark:bg-stone-600'
+                    }`}
                 >
                   <div
-                    className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform duration-300 ${
-                      isRecurring ? 'translate-x-7' : ''
-                    }`}
+                    className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform duration-300 ${isRecurring ? 'translate-x-7' : ''
+                      }`}
                   />
                 </button>
                 <span className="text-stone-900 dark:text-stone-100 font-medium">
@@ -173,26 +201,33 @@ const EnhancedDonation: React.FC = () => {
               className="relative group"
             >
               <div className="absolute -inset-10 bg-gradient-to-tr from-gold/10 via-terracotta/5 to-earthy-green/10 rounded-[3rem] md:rounded-[4rem] blur-[80px] opacity-60 group-hover:opacity-100 transition-opacity duration-1000"></div>
-              
+
               <div className="relative glass-card rounded-[3rem] md:rounded-[4rem] p-8 md:p-12 shadow-[0_40px_100px_rgba(0,0,0,0.08)] flex flex-col items-center text-center">
                 <div className="mb-8 p-6 bg-white/80 dark:bg-stone-800/80 rounded-[2rem] shadow-[0_10px_40px_rgba(0,0,0,0.05)] border border-white/50 dark:border-stone-700/50 relative overflow-hidden group/qr">
                   <div className="absolute inset-0 bg-stone-50 dark:bg-stone-700 opacity-0 group-hover/qr:opacity-10 transition-opacity"></div>
                   <div className="w-48 h-48 md:w-64 md:h-64 bg-white dark:bg-stone-900 flex items-center justify-center p-4 relative z-10 rounded-2xl">
-                    <Image 
-                      src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=TribalWelfareSociety_UPI_PORTAL_SUPPORT&bgcolor=ffffff&color=121212" 
-                      alt="Donation QR Code" 
+                    <Image
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=TribalWelfareSociety_UPI_PORTAL_SUPPORT&bgcolor=ffffff&color=121212"
+                      alt="Donation QR Code"
                       width={256}
                       height={256}
-                      className="w-full h-full grayscale group-hover/qr:grayscale-0 transition-all duration-700" 
+                      className="w-full h-full grayscale group-hover/qr:grayscale-0 transition-all duration-700"
                     />
                   </div>
                   <div className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-terracotta via-gold to-earthy-green"></div>
                 </div>
-                
+
                 <h3 className="serif text-2xl md:text-3xl mb-4 text-stone-900 dark:text-stone-100 font-bold">Quick Donate</h3>
-                <p className="text-stone-500 dark:text-stone-300 text-xs md:text-sm mb-8 max-w-xs leading-relaxed">
-                  Scan the QR code to contribute instantly via UPI
+                <p className="text-stone-500 dark:text-stone-300 text-xs md:text-sm mb-6 max-w-xs leading-relaxed">
+                  Scan the QR code or click below to contribute instantly via any UPI app (GPay, PhonePe, Paytm).
                 </p>
+
+                <a
+                  href={`upi://pay?pa=tribalwelfaresociety@sbi&pn=Tribal%20Welfare%20Society&am=${displayAmount > 0 ? displayAmount : ''}&cu=INR`}
+                  className="w-full py-4 bg-terracotta text-white rounded-xl font-bold uppercase tracking-wider text-sm shadow-lg hover:shadow-xl hover:bg-terracotta/90 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                >
+                  Pay via UPI App
+                </a>
               </div>
             </motion.div>
 
@@ -219,32 +254,7 @@ const EnhancedDonation: React.FC = () => {
           </div>
         </div>
 
-        {/* Financial Details */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-white dark:bg-stone-800 rounded-3xl p-8 md:p-12 border border-stone-200 dark:border-stone-700"
-        >
-          <h4 className="serif text-3xl text-stone-900 dark:text-stone-100 mb-8">Financial Details</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { label: 'Organization', value: 'Tribal Welfare Society (Regd.)' },
-              { label: 'Bank', value: 'State Bank of India' },
-              { label: 'Account Number', value: '0000 1234 5678 90' },
-              { label: 'IFSC Code', value: 'SBIN0001122' },
-            ].map((item) => (
-              <div key={item.label} className="group">
-                <p className="text-stone-400 dark:text-stone-500 uppercase text-[9px] tracking-[0.3em] font-bold mb-2 group-hover:text-terracotta transition-colors">
-                  {item.label}
-                </p>
-                <p className="text-stone-900 dark:text-stone-100 font-bold text-lg sans-alt">
-                  {item.value}
-                </p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );

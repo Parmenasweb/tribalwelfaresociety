@@ -95,7 +95,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const program = programs[slug as keyof typeof programs];
-  
+
   if (!program) {
     return {
       title: 'Program Not Found',
@@ -124,6 +124,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ slug: 
           alt={program.title}
           fill
           className="object-cover grayscale-[0.3]"
+          sizes="100vw"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/50 to-transparent" />

@@ -1,32 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter, Linkedin, Youtube, Mail, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 
 const socialLinks = [
   {
     name: 'Facebook',
-    href: 'https://www.facebook.com/tribalwelfaresociety',
+    href: 'https://www.facebook.com/me/',
     icon: Facebook,
   },
   {
     name: 'Instagram',
-    href: 'https://www.instagram.com/tribalwelfaresociety',
+    href: 'https://www.instagram.com/tribalwelfaresociety/?hl=en',
     icon: Instagram,
   },
   {
-    name: 'Twitter',
-    href: 'https://twitter.com/tribalwelfaresoc',
-    icon: Twitter,
-  },
-  {
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/tribal-welfare-society',
+    href: 'https://www.linkedin.com/in/tribal-welfare-society-b3a9333b1',
     icon: Linkedin,
-  },
-  {
-    name: 'YouTube',
-    href: 'https://www.youtube.com/@tribalwelfaresociety',
-    icon: Youtube,
   },
 ];
 
@@ -69,28 +59,36 @@ const Footer: React.FC = () => {
             <ul className="space-y-6 text-stone-400 dark:text-stone-300 text-sm font-light">
               <li className="flex flex-col gap-1">
                 <span className="text-stone-300 dark:text-stone-200 font-bold flex items-center gap-2">
-                  <MapPin className="w-4 h-4 shrink-0" />
-                  Delhi Office
+                  <MapPin className="w-4 h-4 shrink-0 text-terracotta" />
+                  Registered Office
                 </span>
-                Coordinating Center, New Delhi
+                Plot 1, West Kidwai Nagar, New Delhi
               </li>
               <li className="flex flex-col gap-1">
                 <span className="text-stone-300 dark:text-stone-200 font-bold flex items-center gap-2">
-                  <MapPin className="w-4 h-4 shrink-0" />
-                  Field HQ
+                  <MapPin className="w-4 h-4 shrink-0 text-earthy-green" />
+                  Regional Office
                 </span>
-                Handloom Center, NE India
+                102 Neehal Enclave, Opp. Pratiksha Hospital, VIP Road, Guwahati, Kamrup Metropolitan 781036
+              </li>
+              <li className="flex flex-col gap-2">
+                <span className="text-stone-300 dark:text-stone-200 font-bold flex items-center gap-2">
+                  <Phone className="w-4 h-4 shrink-0 text-gold" />
+                  Phone
+                </span>
+                <a href="tel:+919707331175" className="hover:text-terracotta transition-colors">+91 9707331175</a>
+                <a href="tel:+919864841089" className="hover:text-terracotta transition-colors">+91 9864841089</a>
               </li>
               <li className="flex flex-col gap-1">
                 <span className="text-stone-300 dark:text-stone-200 font-bold flex items-center gap-2">
                   <Mail className="w-4 h-4 shrink-0" />
-                  Digital
+                  Email
                 </span>
                 <a
-                  href="mailto:info@tribalwelfaresociety.org"
+                  href="mailto:tribalwelfare1994@gmail.com"
                   className="hover:text-terracotta transition-colors"
                 >
-                  info@tribalwelfaresociety.org
+                  tribalwelfare1994@gmail.com
                 </a>
               </li>
             </ul>
@@ -126,7 +124,7 @@ const Footer: React.FC = () => {
         <div className="pt-12 border-t border-stone-900/50 space-y-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-stone-500 dark:text-stone-400 text-[9px] uppercase tracking-[0.4em] font-medium">
-              © 2024 Tribal Welfare Society. Editorial Digital Portal.
+              © {new Date().getFullYear()} Tribal Welfare Society. Editorial Digital Portal.
             </p>
             <div className="flex flex-wrap justify-center gap-8 md:gap-10">
               <Link

@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section 
+    <section
       ref={heroRef}
       className="relative min-h-[85svh] max-h-[130svh] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F5F5F0] via-white/60 to-[#F5F5F0] dark:from-stone-950 dark:via-stone-900 dark:to-stone-950"
     >
@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
           className="object-cover opacity-85 dark:opacity-55 saturate-[1.15] contrast-[1.1]"
           sizes="100vw"
         />
-        {/* Light mode overlay: slightly darker (not white-wash) to keep image visible */} 
+        {/* Light mode overlay: slightly darker (not white-wash) to keep image visible */}
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/10 via-stone-900/0 to-stone-900/12 dark:from-stone-950/70 dark:via-stone-900/55 dark:to-stone-950" />
       </div>
 
@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-16 md:py-24 text-center max-w-7xl">
         {/* Logo */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -55,17 +55,15 @@ const Hero: React.FC = () => {
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-tr from-terracotta/20 via-gold/20 to-earthy-green/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="relative bg-gradient-to-tr from-terracotta via-gold to-earthy-green rounded-full p-[2px] shadow-lg">
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-white dark:bg-stone-900 rounded-full flex items-center justify-center">
-                <span className="serif text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-tr from-terracotta via-gold to-earthy-green">
-                  TWS
-                </span>
+              <div className="w-20 h-20 md:w-24 md:h-24  flex items-center justify-center">
+
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* Mission Badge */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -77,7 +75,7 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* Main Heading */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -90,9 +88,9 @@ const Hero: React.FC = () => {
             </span>
           </h1>
         </motion.div>
-        
+
         {/* Vision Statement */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -127,10 +125,10 @@ const Hero: React.FC = () => {
               </motion.div>
             ))}
           </div>
-          
+
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
-            <a 
+            <a
               href="#roots"
               className="group relative overflow-hidden px-8 md:px-12 py-4 md:py-5 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl text-white"
             >
@@ -138,8 +136,8 @@ const Hero: React.FC = () => {
               <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
               <span className="relative z-10">Explore Our Impact</span>
             </a>
-            
-            <a 
+
+            <a
               href="#support"
               className="group px-8 md:px-12 py-4 md:py-5 bg-transparent border-2 border-terracotta/50 dark:border-gold/60 text-stone-900 dark:text-stone-100 rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 hover:scale-105 flex items-center gap-2 hover:border-terracotta dark:hover:border-gold"
             >
@@ -151,7 +149,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
