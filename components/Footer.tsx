@@ -5,7 +5,7 @@ import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react
 const socialLinks = [
   {
     name: 'Facebook',
-    href: 'https://www.facebook.com/me/',
+    href: 'https://www.facebook.com/tribalwelfaresociety?rdid=bh1qakepWtODeeyy#',
     icon: Facebook,
   },
   {

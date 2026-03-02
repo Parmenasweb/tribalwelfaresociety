@@ -22,7 +22,7 @@ const ContactMap: React.FC = () => {
     try {
       // NOTE: Ensure you add your actual access key here before deployment.
       const formDataToSubmit = new FormData();
-      formDataToSubmit.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+      formDataToSubmit.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
       formDataToSubmit.append("name", formData.name);
       formDataToSubmit.append("email", formData.email);
       formDataToSubmit.append("phone", formData.phone || "Not provided");
@@ -160,7 +160,7 @@ const ContactMap: React.FC = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale hover:grayscale-0 transition-all duration-700"
+                className=""
                 title="Tribal Welfare Society — Regional Office, Guwahati"
               />
             </motion.div>

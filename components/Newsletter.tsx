@@ -17,7 +17,7 @@ const Newsletter: React.FC = () => {
     try {
       // NOTE: Ensure you add your actual access key here before deployment.
       const formData = new FormData();
-      formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+      formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
       formData.append("email", email);
       formData.append("subject", "New Newsletter Subscriber — Tribal Welfare Society");
 
@@ -191,7 +191,7 @@ const Newsletter: React.FC = () => {
               ))}
             </div>
             <motion.a
-              href="#"
+              href="/updates"
               className="inline-flex items-center gap-2 mt-8 text-stone-900 dark:text-stone-100 font-bold hover:text-terracotta transition-colors"
             >
               View All Updates

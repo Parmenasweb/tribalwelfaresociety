@@ -19,9 +19,9 @@ export const organizationStructuredData = {
     email: 'info@tribalwelfaresociety.org',
   },
   sameAs: [
-    'https://www.facebook.com/tribalwelfaresociety',
-    'https://www.twitter.com/tribalwelfaresociety',
-    'https://www.instagram.com/tribalwelfaresociety',
+    'https://www.facebook.com/tribalwelfaresociety?rdid=bh1qakepWtODeeyy#',
+    'https://www.instagram.com/tribalwelfaresociety/?hl=en',
+    'https://www.linkedin.com/in/tribal-welfare-society-b3a9333b1',
   ],
   areaServed: {
     '@type': 'Place',

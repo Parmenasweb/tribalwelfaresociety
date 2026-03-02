@@ -16,30 +16,37 @@ const milestones: Milestone[] = [
   {
     year: '1993',
     title: 'The Foundation',
-    description: 'Established during peak displacement periods to provide immediate shelter and legal aid to tribal communities.',
-    caption: 'First Relief Operation',
+    description: 'Founded in New Delhi during peak displacement crises in Northeast India. The organization began by providing emergency shelter, food aid, and legal support to families who had lost everything.',
+    caption: 'First Relief Operation — New Delhi',
     color: '#D2691E'
   },
   {
-    year: '2005',
-    title: 'Handloom Heritage',
-    description: 'The birth of the Weaving & Production Center, creating sustainable livelihoods for displaced women.',
-    caption: 'Artisan Empowerment Center',
+    year: '2001',
+    title: 'Regional Expansion',
+    description: 'Opened our Regional Office in Guwahati, Assam (VIP Road), extending our on-ground reach into Manipur, Nagaland, Mizoram, and Meghalaya with dedicated field coordinators.',
+    caption: 'Regional Office, Guwahati, Assam',
     color: '#556B2F'
+  },
+  {
+    year: '2010',
+    title: 'Artisan Empowerment',
+    description: 'Launched our flagship Weaving & Production Center, transforming traditional handloom knowledge into sustainable livelihoods for displaced women and youth across the northeast.',
+    caption: 'Handloom Training Workshop',
+    color: '#D4AF37'
   },
   {
     year: '2015',
     title: 'Legal Advocacy',
-    description: 'Launch of legal literacy camps helping tribal families reclaim their constitutional land rights.',
-    caption: 'Land Rights Seminar',
-    color: '#D4AF37'
+    description: 'Initiated formal legal literacy camps in partnership with constitutional lawyers, helping tribal families understand and assert their rights to land, citizenship, and government entitlements.',
+    caption: 'Constitutional Rights Seminar',
+    color: '#D2691E'
   },
   {
     year: '2026',
     title: 'The Digital Future',
-    description: 'Scaling our reach through a global marketplace for tribal crafts and digital vocational training.',
+    description: 'Transforming our outreach with a global digital marketplace for tribal crafts, online vocational training programs, and a transparent impact ledger—ensuring 30+ years of legacy scales further.',
     caption: 'TWS Digital Hub Vision',
-    color: '#121212'
+    color: '#556B2F'
   }
 ];
 
@@ -55,15 +62,15 @@ const LegacyTimeline: React.FC = () => {
   return (
     <div ref={containerRef} className="relative max-w-5xl mx-auto py-12 px-6">
       <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1.5px] bg-stone-200 dark:bg-stone-700 md:-translate-x-1/2"></div>
-      
-      <motion.div 
+
+      <motion.div
         className="absolute left-6 md:left-1/2 top-0 w-[1.5px] bg-stone-900 dark:bg-stone-100 md:-translate-x-1/2 transition-all duration-300 ease-out z-10"
         style={{ height: lineHeight }}
       ></motion.div>
-      
-      <div className="space-y-32">
+
+      <div className="space-y-16">
         {milestones.map((item, index) => (
-          <motion.div 
+          <motion.div
             key={item.year}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -71,9 +78,9 @@ const LegacyTimeline: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.1 }}
             className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
           >
-            
+
             <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.1 }}
                 className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white dark:bg-stone-800 border-2 flex items-center justify-center shadow-lg"
                 style={{ borderColor: item.color }}
@@ -83,7 +90,7 @@ const LegacyTimeline: React.FC = () => {
             </div>
 
             <div className={`w-full md:w-[42%] mt-16 md:mt-0 pl-16 md:pl-0 text-left ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'} group`}>
-              <motion.h3 
+              <motion.h3
                 className="serif text-3xl md:text-5xl mb-6 text-stone-900 dark:text-stone-100 group-hover:text-terracotta transition-colors duration-500"
               >
                 {item.title}
@@ -91,11 +98,11 @@ const LegacyTimeline: React.FC = () => {
               <p className="text-stone-600 dark:text-stone-300 font-light leading-relaxed text-base md:text-lg mb-10 max-w-lg md:ml-auto md:mr-0">
                 {item.description}
               </p>
-              
+
               <div className="relative overflow-hidden rounded-xl bg-white dark:bg-stone-800 p-1.5 md:p-2 shadow-2xl border border-stone-100 dark:border-stone-700">
                 <div className="relative overflow-hidden rounded-lg aspect-video transition-transform duration-700">
-                  <Image 
-                    src={`https://images.unsplash.com/photo-${index === 0 ? '1488521787991-ed7bbaae773c' : index === 1 ? '1544256718-3bcf237f3974' : index === 2 ? '1589829545856-d10d557cf95f' : '1542810634-71277d95dcbb'}?q=80&w=1200&auto=format&fit=crop`} 
+                  <Image
+                    src={`https://images.unsplash.com/photo-${index === 0 ? '1488521787991-ed7bbaae773c' : index === 1 ? '1544256718-3bcf237f3974' : index === 2 ? '1589829545856-d10d557cf95f' : '1542810634-71277d95dcbb'}?q=80&w=1200&auto=format&fit=crop`}
                     alt={item.title}
                     fill
                     className="object-cover transition-all duration-1000 scale-105 group-hover:scale-100"
@@ -103,7 +110,7 @@ const LegacyTimeline: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors duration-700"></div>
                 </div>
-                
+
                 <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   <div className="bg-white dark:bg-stone-800/95 backdrop-blur-sm px-4 py-2 rounded-full border border-stone-100 dark:border-stone-700 shadow-xl">
                     <p className="serif text-stone-800 dark:text-stone-100 text-[10px] md:text-xs font-bold italic">
