@@ -70,5 +70,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/updates/new-handloom-center-assam`,
+      lastModified: new Date('2026-03-01'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/updates/legal-victory-land-rights`,
+      lastModified: new Date('2026-02-15'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/updates/annual-impact-report-2025`,
+      lastModified: new Date('2026-01-28'),
+      changeFrequency: 'yearly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/updates/emergency-flood-relief-northeast`,
+      lastModified: new Date('2026-01-10'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/updates/holistic-scholarship-winners-2025`,
+      lastModified: new Date('2025-12-15'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
   ];
 }

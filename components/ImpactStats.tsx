@@ -13,7 +13,7 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    value: 50000,
+    value: 10000,
     suffix: '+',
     label: 'Lives Impacted',
     color: 'text-terracotta',
@@ -27,7 +27,7 @@ const stats: Stat[] = [
     ),
   },
   {
-    value: 200,
+    value: 70,
     suffix: '+',
     label: 'Artisan Families',
     color: 'text-earthy-green',
@@ -40,7 +40,7 @@ const stats: Stat[] = [
     ),
   },
   {
-    value: 150,
+    value: 50,
     suffix: '+',
     label: 'Vocational Programs',
     color: 'text-gold',
@@ -52,7 +52,7 @@ const stats: Stat[] = [
     ),
   },
   {
-    value: 500,
+    value: 50,
     suffix: '+',
     label: 'Legal Cases Won',
     color: 'text-stone-600 dark:text-stone-400',
@@ -67,7 +67,7 @@ const stats: Stat[] = [
     ),
   },
   {
-    value: 25,
+    value: 15,
     suffix: '+',
     label: 'Communities Reached',
     color: 'text-terracotta',
@@ -79,7 +79,7 @@ const stats: Stat[] = [
     ),
   },
   {
-    value: 10000,
+    value: 1000,
     suffix: '+',
     label: 'Artisan Products Sold',
     color: 'text-earthy-green',

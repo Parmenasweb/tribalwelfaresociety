@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import ThemeToggle from './ThemeToggle';
 
 const Header: React.FC = () => {
@@ -59,19 +60,30 @@ const Header: React.FC = () => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-            ? 'py-3 shadow-md'
-            : 'py-5'
+          ? 'py-3 shadow-md'
+          : 'py-5'
           } bg-white/95 dark:bg-stone-900/95 backdrop-blur-xl border-b border-stone-200/50 dark:border-stone-700/50`}
       >
         <div className="container mx-auto px-4 sm:px-5 lg:px-6 xl:px-8 2xl:px-10 flex justify-between items-center max-w-7xl">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className={`serif text-xl lg:text-2xl xl:text-3xl font-bold tracking-tighter cursor-pointer hover:opacity-70 transition-all shrink-0 ${isScrolled ? 'text-stone-900 dark:text-white' : 'text-stone-900 dark:text-white'
-              }`}
+            className="flex items-center gap-2 md:gap-3 cursor-pointer hover:opacity-80 transition-opacity shrink-0"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            Tribal Welfare Society
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex-shrink-0">
+              <Image
+                src="/images/favicons/favicon-96x96.png"
+                alt="Tribal Welfare Society Logo"
+                fill
+                className="object-contain"
+                sizes="40px"
+                priority
+              />
+            </div>
+            <span className={`serif text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold tracking-tighter text-stone-900 dark:text-white`}>
+              Tribal Welfare Society
+            </span>
           </motion.div>
 
           <nav className="hidden lg:flex items-center space-x-5 xl:space-x-6 2xl:space-x-8 shrink-0">
@@ -80,8 +92,8 @@ const Header: React.FC = () => {
                 key={link.name}
                 href={link.href}
                 className={`group relative text-[9px] xl:text-[10px] font-bold tracking-[0.25em] xl:tracking-[0.3em] uppercase py-2 whitespace-nowrap transition-colors duration-300 ${isScrolled
-                    ? 'text-stone-900 dark:text-white hover:text-terracotta dark:hover:text-terracotta'
-                    : 'text-stone-900 dark:text-white hover:text-terracotta dark:hover:text-terracotta'
+                  ? 'text-stone-900 dark:text-white hover:text-terracotta dark:hover:text-terracotta'
+                  : 'text-stone-900 dark:text-white hover:text-terracotta dark:hover:text-terracotta'
                   }`}
                 whileHover={{ y: -1 }}
                 whileTap={{ y: 0 }}
@@ -104,8 +116,8 @@ const Header: React.FC = () => {
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.98 }}
               className={`group relative overflow-hidden px-6 xl:px-8 py-3 rounded-full text-[9px] xl:text-[10px] font-black uppercase tracking-[0.25em] xl:tracking-[0.3em] whitespace-nowrap transition-shadow duration-300 shadow-lg hover:shadow-2xl ${isScrolled
-                  ? 'text-white dark:text-stone-900'
-                  : 'text-white dark:text-stone-900'
+                ? 'text-white dark:text-stone-900'
+                : 'text-white dark:text-stone-900'
                 }`}
             >
               <span className="absolute inset-0 bg-gradient-to-r from-terracotta via-gold to-earthy-green opacity-95" />

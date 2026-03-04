@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Tag, ArrowRight } from 'lucide-react';
+import { Calendar, Tag, ArrowRight, Home } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: 'Updates | Tribal Welfare Society',
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
         title: 'Updates | Tribal Welfare Society',
         description: 'Real stories of real impact from the field. Stay up to date with our programs, legal victories, and community initiatives.',
         url: 'https://www.tribalwelfaresociety.org/updates',
-        images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+        images: [{ url: '/images/favicons/web-app-manifest-512x512.png', width: 512, height: 512 }],
     },
 };
 
@@ -30,7 +30,7 @@ interface BlogPost {
 const CATEGORY_COLORS: Record<Category, string> = {
     'Impact Story': 'bg-terracotta/10 text-terracotta',
     'Program Update': 'bg-earthy-green/10 text-earthy-green',
-    'Transparency': 'bg-gold/10 text-stone-700',
+    'Transparency': 'bg-gold/10 text-stone-700 dark:text-stone-300',
     'Relief Operation': 'bg-blue-50 text-blue-600',
     'Youth Development': 'bg-purple-50 text-purple-600',
 };
@@ -41,7 +41,7 @@ const posts: BlogPost[] = [
         date: 'March 1, 2026',
         category: 'Program Update',
         title: 'Expanding Our Reach: New Handloom Center Opens in Rural Assam',
-        excerpt: 'Tribal Welfare Society is proud to announce the opening of our newest vocational training center in rural Assam. Equipped with modern looms and guided by master weavers, the center will provide modern machinery and hands-on business mentorship for 50+ artisan families, helping them transform generations-old craft into sustainable income.',
+        excerpt: 'Tribal Welfare Society announces the opening of our newest vocational training center in rural Assam. Equipped with modern looms and guided by master weavers, the center will provide modern machinery and hands-on business mentorship for 50+ artisan families.',
         image: '/images/gallery/vocation/vocation-0.png',
         readTime: '4 min read',
         tags: ['Vocational Training', 'Assam', 'Artisans'],
@@ -51,7 +51,7 @@ const posts: BlogPost[] = [
         date: 'February 15, 2026',
         category: 'Impact Story',
         title: 'Legal Victory: 25 Families Successfully Reclaim Ancestral Land Rights',
-        excerpt: 'After 18 months of sustained legal advocacy, documentation support, and constitutional literacy workshops, 25 displaced tribal families in Churachandpur, Manipur, have successfully reclaimed their ancestral land rights. This landmark case sets a powerful precedent for hundreds of similarly displaced families still fighting for recognition.',
+        excerpt: 'After 18 months of sustained legal advocacy, documentation support, and constitutional literacy workshops, 25 displaced tribal families in Churachandpur, Manipur, have successfully reclaimed their ancestral land rights.',
         image: '/images/gallery/advocacy/advocacy-1.png',
         readTime: '6 min read',
         tags: ['Legal Advocacy', 'Manipur', 'Land Rights'],
@@ -61,7 +61,7 @@ const posts: BlogPost[] = [
         date: 'January 28, 2026',
         category: 'Transparency',
         title: '2025 Annual Impact Report: 30+ Years, Still Counting',
-        excerpt: 'Our 2025 Annual Impact Report is now publicly available. This year, we reached 3,200+ families across five northeastern states, conducted 14 legal literacy camps, trained 480 artisans, and responded to 3 major displacement events. We remain committed to full financial transparency — every rupee donated is accounted for.',
+        excerpt: 'Our 2025 Annual Impact Report is now publicly available. This year, we reached 3,200+ families across five northeastern states, conducted 14 legal literacy camps, and trained 480 artisans.',
         image: '/images/gallery/impact/impact-1.png',
         readTime: '8 min read',
         tags: ['Annual Report', 'Transparency', 'Impact'],
@@ -71,7 +71,7 @@ const posts: BlogPost[] = [
         date: 'January 10, 2026',
         category: 'Relief Operation',
         title: 'Emergency Response: Flood Relief Operations Across Northeast India',
-        excerpt: 'Within 48 hours of flood warnings, TWS mobilized relief teams across affected districts of Assam and Manipur. Over 500 individuals received emergency food kits, medical supplies, and temporary shelter support. Our rapid-response model — built over decades of field experience — ensured that the most vulnerable communities were reached first.',
+        excerpt: 'Within 48 hours of flood warnings, TWS mobilized relief teams across affected districts of Assam and Manipur. Over 500 individuals received emergency food kits, medical supplies, and temporary shelter support.',
         image: '/images/gallery/impact/impact-3.png',
         readTime: '5 min read',
         tags: ['Relief', 'Floods', 'Emergency'],
@@ -81,7 +81,7 @@ const posts: BlogPost[] = [
         date: 'December 15, 2025',
         category: 'Youth Development',
         title: '120 Young Scholars Awarded the TWS Holistic Education Scholarship',
-        excerpt: 'Congratulations to our 2025–26 scholarship cohort — 120 exceptional young minds from underprivileged tribal households who are now pursuing higher education across India. The TWS Holistic Education Scholarship covers tuition, accommodation, and mentorship, ensuring financial barriers never limit a bright future.',
+        excerpt: 'Congratulations to our 2025–26 scholarship cohort — 120 exceptional young minds from underprivileged tribal households now pursuing higher education across India with full TWS support.',
         image: '/images/gallery/education/education-0.png',
         readTime: '4 min read',
         tags: ['Scholarships', 'Education', 'Youth'],
@@ -95,6 +95,13 @@ export default function UpdatesPage() {
     return (
         <main className="min-h-screen bg-[#F5F5F0] dark:bg-stone-950 pt-24 pb-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+
+                {/* Back to Home */}
+                <div className="mb-10">
+                    <Link href="/" className="inline-flex items-center gap-2 text-stone-500 hover:text-terracotta transition-colors text-sm font-medium">
+                        <Home className="w-4 h-4" /> Back to Home
+                    </Link>
+                </div>
 
                 {/* Page Header */}
                 <div className="text-center mb-20">
@@ -144,9 +151,10 @@ export default function UpdatesPage() {
                 {/* Other Posts */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {rest.map((post) => (
-                        <article
+                        <Link
                             key={post.slug}
-                            className="group bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-700 hover:shadow-xl transition-all duration-400"
+                            href={`/updates/${post.slug}`}
+                            className="group block bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-700 hover:shadow-xl transition-all duration-400"
                         >
                             <div className="relative h-52 overflow-hidden">
                                 <Image
@@ -180,9 +188,19 @@ export default function UpdatesPage() {
                                         </span>
                                     ))}
                                 </div>
+                                <div className="mt-4 flex items-center gap-1.5 text-terracotta font-bold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                                    Read Article <ArrowRight className="w-3 h-3" />
+                                </div>
                             </div>
-                        </article>
+                        </Link>
                     ))}
+                </div>
+
+                {/* Back to Home — bottom */}
+                <div className="text-center mt-16">
+                    <Link href="/" className="inline-flex items-center gap-2 px-8 py-4 bg-terracotta text-white rounded-full font-bold uppercase tracking-wider text-sm hover:bg-terracotta/90 transition-colors shadow-lg">
+                        <Home className="w-4 h-4" /> Back to Home
+                    </Link>
                 </div>
 
             </div>

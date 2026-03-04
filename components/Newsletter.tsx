@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, CheckCircle, Calendar, Loader2, AlertCircle } from 'lucide-react';
+import Link from 'next/link';
+import { Mail, CheckCircle, Calendar, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 
 type SubState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -43,30 +44,35 @@ const Newsletter: React.FC = () => {
 
   const updates = [
     {
+      slug: 'new-handloom-center-assam',
       date: 'March 1, 2026',
       title: 'Expanding Our Reach: New Handloom Center in Assam',
       category: 'Program Update',
       excerpt: 'We are thrilled to announce the opening of our newest vocational training center, providing modern machinery and opportunities for 50+ artisan families in rural Assam.',
     },
     {
+      slug: 'legal-victory-land-rights',
       date: 'February 15, 2026',
       title: 'Legal Victory: 25 Families Reclaim Ancestral Land Rights',
       category: 'Impact Story',
       excerpt: 'Through our intense legal advocacy programs and literacy camps, we successfully helped 25 displaced families understand their constitutional rights and reclaim their ancestral lands.',
     },
     {
+      slug: 'annual-impact-report-2025',
       date: 'January 28, 2026',
       title: '2025 Annual Impact Report Released',
       category: 'Transparency',
       excerpt: 'View our comprehensive annual report detailing our financial transparency, milestones achieved across four states, and our strategic goals for the upcoming decade.',
     },
     {
+      slug: 'emergency-flood-relief-northeast',
       date: 'January 10, 2026',
       title: 'Emergency Relief Dispatched to Flood-Affected Regions',
       category: 'Relief Operation',
       excerpt: 'Our volunteer teams immediately responded to the recent floods in the northeast, setting up temporary camps and distributing crucial medical aid and food supplies to over 500 individuals.',
     },
     {
+      slug: 'holistic-scholarship-winners-2025',
       date: 'December 15, 2025',
       title: 'Holistic Education Scholarship Winners Announced',
       category: 'Youth Development',
@@ -171,22 +177,29 @@ const Newsletter: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white dark:bg-stone-800 rounded-2xl p-6 border border-stone-200 dark:border-stone-700 hover:shadow-xl transition-all duration-300 cursor-pointer group"
                 >
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <span className="text-xs font-bold uppercase tracking-wider text-terracotta">
-                      {update.category}
-                    </span>
-                    <span className="text-xs text-stone-500 dark:text-stone-500">
-                      {update.date}
-                    </span>
-                  </div>
-                  <h4 className="serif text-xl md:text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2 group-hover:text-terracotta transition-colors">
-                    {update.title}
-                  </h4>
-                  <p className="text-stone-600 dark:text-stone-300 text-sm md:text-base">
-                    {update.excerpt}
-                  </p>
+                  <Link
+                    href={`/updates/${update.slug}`}
+                    className="block bg-white dark:bg-stone-800 rounded-2xl p-6 border border-stone-200 dark:border-stone-700 hover:shadow-xl hover:border-terracotta/40 transition-all duration-300 cursor-pointer group"
+                  >
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <span className="text-xs font-bold uppercase tracking-wider text-terracotta">
+                        {update.category}
+                      </span>
+                      <span className="text-xs text-stone-500 dark:text-stone-500">
+                        {update.date}
+                      </span>
+                    </div>
+                    <h4 className="serif text-xl md:text-2xl font-bold text-stone-900 dark:text-stone-100 mb-2 group-hover:text-terracotta transition-colors">
+                      {update.title}
+                    </h4>
+                    <p className="text-stone-600 dark:text-stone-300 text-sm md:text-base">
+                      {update.excerpt}
+                    </p>
+                    <div className="mt-3 flex items-center gap-1 text-terracotta text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                      Read Article <ArrowRight className="w-3 h-3" />
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>

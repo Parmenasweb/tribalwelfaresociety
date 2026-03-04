@@ -45,9 +45,9 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 4,
-    name: 'Daniel Kipgen',
+    name: 'uche ogbe',
     role: 'Youth Program Graduate',
-    location: 'New Delhi',
+    location: 'Guwahati',
     image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801efb?q=80&w=1200&auto=format&fit=crop&facepad=3',
     quote: 'I grew up in an underprivileged neighborhood with limited access to quality education. The TWS scholarship and mentorship programs completely changed my trajectory. I am now pursuing my Master\'s degree and plan to return to help my community.',
     program: 'Holistic Development',
@@ -60,6 +60,7 @@ const getInitials = (name: string) => {
 
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
@@ -72,11 +73,12 @@ const Testimonials: React.FC = () => {
   };
 
   useEffect(() => {
+    if (isHovered) return;
     const id = window.setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
+    }, 8000);
     return () => window.clearInterval(id);
-  }, []);
+  }, [isHovered]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchEndX.current = null;
@@ -145,6 +147,8 @@ const Testimonials: React.FC = () => {
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
               >
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                   <div className="relative flex-shrink-0">

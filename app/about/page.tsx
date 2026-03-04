@@ -4,22 +4,41 @@ import Link from 'next/link';
 import { MapPin, Phone, Mail, Calendar, Shield, Users, Heart, BookOpen, Scale, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'About Us | Tribal Welfare Society',
-    description: 'Learn about Tribal Welfare Society — a registered NGO founded in 1993, dedicated to empowering displaced tribal communities across Northeast India through vocational training, legal advocacy, education, and relief operations.',
+    title: 'About Us | Tribal Welfare Society | NGO Since 1993',
+    description: 'Learn about Tribal Welfare Society — a registered NGO founded in 1993 in New Delhi, empowering displaced tribal communities across Northeast India through vocational training, legal advocacy, education, and disaster relief.',
     keywords: [
         'tribal welfare society',
         'tribal welfare society about',
-        'ngo about page',
+        'tribal welfare ngo india',
+        'ngo northeast india',
+        'tribal empowerment organization',
+        'women empowerment ngo assam',
+        'legal advocacy ngo northeast',
+        'ngo for tribal communities',
+        'best ngo northeast india',
+        'registered ngo since 1993',
         'tribal welfare society history',
-        'northeast india ngo',
-        'tribal empowerment ngo',
-        'women empowerment ngo india',
+        'ngo manipur nagaland assam',
+        'vocational training tribal women',
+        '80g ngo india',
     ],
     openGraph: {
-        title: 'About Tribal Welfare Society | Founded 1993',
-        description: 'From a small relief effort in New Delhi to a multi-state NGO impact machine — discover who we are, what drives us, and how we have served tribal communities for over 30 years.',
+        title: 'About Tribal Welfare Society | Founded 1993 | Northeast India NGO',
+        description: 'From a small relief effort in New Delhi to a multi-state NGO — discover who we are, what drives us, and how we have served tribal communities for over 30 years.',
         url: 'https://www.tribalwelfaresociety.org/about',
-        images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+        type: 'website',
+        images: [{
+            url: '/images/favicons/web-app-manifest-512x512.png',
+            width: 512,
+            height: 512,
+            alt: 'Tribal Welfare Society Logo',
+        }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'About Tribal Welfare Society | NGO Since 1993',
+        description: 'Empowering tribal communities in Northeast India since 1993 through legal advocacy, vocational training, and education.',
+        images: ['/images/favicons/web-app-manifest-512x512.png'],
     },
 };
 
@@ -34,7 +53,7 @@ const teamMembers = [
     {
         name: 'Tony Singsit',
         role: 'Secretary',
-        image: '/images/team/secretary.jpeg',
+        image: '/images/team/secretary-nagaland.jpeg',
         email: 'neoprane505@gmail.com',
         phone: '+91 6289793284',
     },
@@ -99,7 +118,7 @@ export default function AboutPage() {
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-stone-200 dark:divide-stone-700">
                         {[
                             { icon: <Calendar className="w-5 h-5" />, value: 'Since 1993', label: 'Registered NGO' },
-                            { icon: <Users className="w-5 h-5" />, value: '50,000+', label: 'Lives Impacted' },
+                            { icon: <Users className="w-5 h-5" />, value: '10,000+', label: 'Lives Impacted' },
                             { icon: <MapPin className="w-5 h-5" />, value: '5 States', label: 'Northeast India' },
                             { icon: <Shield className="w-5 h-5" />, value: '80G', label: 'Tax Exempt Status' },
                         ].map((stat) => (

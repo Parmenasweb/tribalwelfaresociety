@@ -110,7 +110,7 @@ const Gallery: React.FC = () => {
                 alt={img.caption}
                 fill
                 loading="lazy"
-                className="object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500"
+                className="object-cover group-hover:scale-110 transition-all duration-500"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

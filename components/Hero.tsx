@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center mb-8 md:mb-15"
+          className="flex justify-center mb-16 md:mb-20"
         >
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-tr from-terracotta/20 via-gold/20 to-earthy-green/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
